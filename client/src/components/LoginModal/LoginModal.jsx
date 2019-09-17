@@ -1,30 +1,27 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Modal } from 'semantic-ui-react';
+import React, { Fragment } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
-export default class LoginModal extends Component {
-  state = { open: false };
+const LoginModal = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  close = () => this.setState({ open: false });
-
-  render() {
-    return (
-      <Fragment>
-        <Modal size="mini" open={this.props.open} onClose={this.close}>
-          <Modal.Header>Delete Your Account</Modal.Header>
-          <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button negative>No</Button>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Yes"
-            />
-          </Modal.Actions>
-        </Modal>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Fragment>
+  );
+};
