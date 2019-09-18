@@ -3,9 +3,10 @@ import { Button, Modal, Form } from 'react-bootstrap';
 
 const LoginModal = () => {
   const [show, setShow] = useState(false);
+  const [signUp, setSignUp] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const action = signUp ? 'Sign-up' : 'Login';
   return (
     <>
       <Button variant="outline-secondary" onClick={handleShow}>
@@ -13,7 +14,7 @@ const LoginModal = () => {
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+          <Modal.Title>{action}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -29,7 +30,7 @@ const LoginModal = () => {
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Submit
+              {action}
             </Button>
           </Form>
         </Modal.Body>
