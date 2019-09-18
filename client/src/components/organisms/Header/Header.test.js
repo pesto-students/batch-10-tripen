@@ -23,7 +23,7 @@ describe('<Header />', () => {
     });
     it('should contain "Login/Sign-Up" or "Logout" button', () => {
       expect(
-        buttonsWrapper.contains('Login/Sign-Up') ||
+        buttonsWrapper.contains('Sign-In/Sign-Up') ||
           buttonsWrapper.contains('Logout'),
       ).toBe(true);
     });

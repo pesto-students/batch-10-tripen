@@ -15,7 +15,7 @@ const LoginModal = () => {
   const buttonMessage = signUp
     ? 'Already have an account? Sign In'
     : 'Dont have an account? Sign Up.';
-  const buttonClickHandler = () => {
+  const signUpToggle = () => {
     signUp ? initSignIn() : initSignUp();
   };
   return (
@@ -37,7 +37,11 @@ const LoginModal = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="link" onClick={buttonClickHandler}>
+          <Button
+            variant="link"
+            onClick={signUpToggle}
+            className="toggleSignUp"
+          >
             {buttonMessage}
           </Button>
           <Button variant="secondary" onClick={handleClose}>

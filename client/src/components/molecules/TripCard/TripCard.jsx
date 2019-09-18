@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const TripCard = () => {
   return (
     <>
-      <Card>
+      <Card className="mb-4">
         <Card.Img
           variant="top"
           src="http://lorempixel.com/180/100/nature/"
