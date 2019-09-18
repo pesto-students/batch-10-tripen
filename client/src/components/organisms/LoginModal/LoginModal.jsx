@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
-import EmailAndPassInput from '../molecules/EmailAndPassInput';
-import SignUpDetails from '../molecules/SignUpDetails';
+import EmailAndPassInput from '../../molecules/EmailAndPassInput/EmailAndPassInput';
+import SignUpDetails from '../../molecules/SignUpDetails/SignUpDetails';
 
 const LoginModal = () => {
   const [show, setShow] = useState(true);

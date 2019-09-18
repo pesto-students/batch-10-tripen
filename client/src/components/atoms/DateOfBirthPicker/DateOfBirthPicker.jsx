@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { subYears } from 'date-fns/esm';
 
-const MyDatePicker = () => {
+const DateOfBirthPicker = () => {
   const [startDate, setStartDate] = useState(null);
   return (
     <DatePicker
@@ -18,4 +18,4 @@ const MyDatePicker = () => {
   );
 };
 
-export default MyDatePicker;
+export default DateOfBirthPicker;

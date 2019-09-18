@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Col, FormLabel } from 'react-bootstrap';
-import MyDatePicker from '../atoms/DatePicker';
+import DateOfBirthPicker from '../../atoms/DateOfBirthPicker/DateOfBirthPicker';
 
 export default function SignUpDetails() {
   return (
@@ -19,7 +19,7 @@ export default function SignUpDetails() {
       <Form.Group controlId="dateOfBirth">
         <Form.Label>Date Of Birth:</Form.Label>
         <br />
-        <MyDatePicker></MyDatePicker>
+        <DateOfBirthPicker></DateOfBirthPicker>
       </Form.Group>
       <Form.Group controlId="location">
         <Form.Label>Location: </Form.Label>
