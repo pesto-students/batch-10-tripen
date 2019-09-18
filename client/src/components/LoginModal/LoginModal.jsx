@@ -2,17 +2,27 @@ import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import EmailAndPassInput from '../molecules/EmailAndPassInput';
 import SignUpDetails from '../molecules/SignUpDetails';
+import SignInUpButton from '../atoms/SignInUpButton';
 
 const LoginModal = () => {
   const [show, setShow] = useState(false);
-  const [signUp, setSignUp] = useState(true);
+  const [signUp, setSignUp] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const action = signUp ? 'Sign-up' : 'Login';
+  const initSignUp = () => setSignUp(true);
+  const initSignIn = () => setSignUp(false);
+
+  const action = signUp ? 'Sign-up' : 'Sign In';
+  const buttonMessage = signUp
+    ? 'Already have an account? Sign In'
+    : 'Dont have an account? Sign Up.';
+  const buttonClickHandler = () => {
+    signUp ? initSignIn() : initSignUp();
+  };
   return (
     <>
       <Button variant="outline-secondary" onClick={handleShow}>
-        Login/Sign-Up
+        Sign-In/Sign-Up
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -20,16 +30,17 @@ const LoginModal = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <SignUpDetails></SignUpDetails>
+            {signUp ? <SignUpDetails></SignUpDetails> : null}
             <EmailAndPassInput></EmailAndPassInput>
-
             <Button variant="primary" type="submit">
               {action}
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="link">Dont have an account? Sign Up.</Button>
+          <Button variant="link" onClick={buttonClickHandler}>
+            {buttonMessage}
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
