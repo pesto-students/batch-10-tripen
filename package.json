@@ -5,5 +5,13 @@
   "main": "index.js",
   "repository": "https://github.com/pesto-students/batch-10-tripen.git",
   "license": "MIT",
-  "dependencies": {}
+  "scripts": {
+    "dev:client": "yarn --cwd client run start",
+    "dev:server": "yarn --cwd server run start",
+    "dev": "concurrently \"yarn dev:client\" \"yarn dev:server\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^4.1.2"
+  }
 }
