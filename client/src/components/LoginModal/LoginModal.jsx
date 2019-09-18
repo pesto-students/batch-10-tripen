@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import EmailAndPassInput from '../molecules/EmailAndPassInput';
 import SignUpDetails from '../molecules/SignUpDetails';
-import SignInUpButton from '../atoms/SignInUpButton';
 
 const LoginModal = () => {
-  const [show, setShow] = useState(false);
-  const [signUp, setSignUp] = useState(false);
+  const [show, setShow] = useState(true);
+  const [signUp, setSignUp] = useState(true);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const initSignUp = () => setSignUp(true);

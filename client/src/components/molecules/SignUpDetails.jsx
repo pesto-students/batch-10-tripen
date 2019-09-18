@@ -7,15 +7,17 @@ export default function SignUpDetails() {
     <div>
       <Form.Row>
         <Col>
+          <Form.Label hidden>First Name:</Form.Label>
           <Form.Control placeholder="First name" />
         </Col>
         <Col>
+          <Form.Label hidden>Last name:</Form.Label>
           <Form.Control placeholder="Last name" />
         </Col>
       </Form.Row>
       <br></br>
       <Form.Group controlId="dateOfBirth">
-        <Form.Label>Date Of Birth</Form.Label>
+        <Form.Label>Date Of Birth:</Form.Label>
         <br />
         <MyDatePicker></MyDatePicker>
       </Form.Group>
