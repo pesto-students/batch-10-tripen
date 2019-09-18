@@ -4,8 +4,8 @@ import EmailAndPassInput from '../../molecules/EmailAndPassInput/EmailAndPassInp
 import SignUpDetails from '../../molecules/SignUpDetails/SignUpDetails';
 
 const LoginModal = () => {
-  const [show, setShow] = useState(true);
-  const [signUp, setSignUp] = useState(true);
+  const [show, setShow] = useState(false);
+  const [signUp, setSignUp] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const initSignUp = () => setSignUp(true);
