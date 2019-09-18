@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import App from './App';
-import Header from './Header/Header';
 
 describe('<App />', () => {
   const wrapper = mount(<App />);
