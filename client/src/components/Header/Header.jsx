@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
+import LoginModal from '../LoginModal/LoginModal';
 
 const Header = () => {
   return (
@@ -10,7 +11,8 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Button variant="primary">Create Timeline</Button>
-            <Button variant="outline-secondary">Login/Sign-Up</Button>
+
+            <LoginModal></LoginModal>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

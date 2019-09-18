@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Modal, Form } from 'react-bootstrap';
 
 const LoginModal = () => {
   const [show, setShow] = useState(false);
@@ -7,21 +7,42 @@ const LoginModal = () => {
   const handleShow = () => setShow(true);
 
   return (
-    <Fragment>
-      <Modal show={show} onHide={handleClose}>
+    <>
+      <Button variant="outline-secondary" onClick={handleShow}>
+        Login/Sign-Up
+      </Button>
+      <Modal show={show} onHide={handleShow}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
+          <Button variant="link">Dont have an account? Sign Up.</Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
         </Modal.Footer>
       </Modal>
-    </Fragment>
+    </>
   );
 };
+
+export default LoginModal;
