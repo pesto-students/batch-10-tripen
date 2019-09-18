@@ -11,7 +11,7 @@ const LoginModal = () => {
       <Button variant="outline-secondary" onClick={handleShow}>
         Login/Sign-Up
       </Button>
-      <Modal show={show} onHide={handleShow}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
@@ -24,7 +24,6 @@ const LoginModal = () => {
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
-
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
