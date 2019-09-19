@@ -1,5 +1,8 @@
 import React from 'react';
+import CoverImage from '../../organisms/CoverImage/CoverImage';
 
-export default function TimeLine() {
-  return <div>timeline</div>;
-}
+const TimeLine = () => {
+  return <CoverImage></CoverImage>;
+};
+
+export default TimeLine;
