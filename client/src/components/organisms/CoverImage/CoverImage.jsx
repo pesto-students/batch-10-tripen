@@ -13,12 +13,12 @@ const CoverImage = () => {
       <div className="layer">
         <div className="flex-container">
           <h1>My Trip To Tokyo</h1>
-          <blockquote class="blockquote text-center">
-            <p class="mb-0">
+          <blockquote className="blockquote text-center">
+            <p className="mb-0">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
               posuere erat a ante.
             </p>
-            <footer class="blockquote-footer">
+            <footer className="blockquote-footer">
               by <cite title="Source Title">Andrew Jaiswal</cite>
             </footer>
           </blockquote>
