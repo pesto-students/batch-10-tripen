@@ -6,7 +6,6 @@ import TripCard from '../../molecules/TripCard/TripCard';
 export default function TripList() {
   return (
     <Container>
-      <h1>Trending Timlines</h1>
       <Row>
         <Col md={3}>
           <TripCard></TripCard>
