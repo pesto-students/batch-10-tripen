@@ -44,7 +44,11 @@ const LoginModal = () => {
           >
             {buttonMessage}
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="secondary"
+            onClick={handleClose}
+            className="close-button"
+          >
             Close
           </Button>
         </Modal.Footer>

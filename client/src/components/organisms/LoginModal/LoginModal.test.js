@@ -6,6 +6,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 
 describe('<LoginModal />', () => {
   let wrapper = mount(<LoginModal></LoginModal>);
+
   it('renders', () => {
     expect(wrapper.exists()).toBe(true);
   });
@@ -17,16 +18,17 @@ describe('<LoginModal />', () => {
     const modalWrapper = wrapper.find(Modal);
     expect(modalWrapper.length).toBe(1);
   });
-  describe('Buttons', () => {
+  describe('button', () => {
     let wrapper = mount(<LoginModal></LoginModal>);
     const buttonWrapper = wrapper.find(Button);
     it('opens modal when button is clicked', () => {
       buttonWrapper.simulate('click');
+
       expect(wrapper.find(Modal).prop('show')).toEqual(true);
     });
   });
 
-  describe('Modal', () => {
+  describe('modal', () => {
     it('is closed by default', () => {
       expect(wrapper.find(Modal).prop('show')).toEqual(false);
     });
@@ -34,11 +36,13 @@ describe('<LoginModal />', () => {
       let wrapper = mount(<LoginModal></LoginModal>);
       const buttonWrapper = wrapper.find(Button);
       buttonWrapper.simulate('click');
+      it('closes on clicking the close button', () => {
+        const closeButton = wrapper.find('.close');
+        closeButton.simulate('click');
+        expect(wrapper.find(Modal).prop('show')).toEqual(false);
+      });
       describe('modal header', () => {
         it('exists', () => {
-          expect(wrapper.find(Modal.Title).length).toBe(1);
-        });
-        it('contains title', () => {
           expect(wrapper.find(Modal.Title).length).toBe(1);
         });
       });
@@ -47,8 +51,11 @@ describe('<LoginModal />', () => {
         it('exists', () => {
           expect(wrapper.find(Modal.Body).length).toBe(1);
         });
-        it('contains <EmailAndPassInput>', () => {
-          expect(wrapper.find(EmailAndPassInput).length).toBe(1);
+        it('contains 1 email input', () => {
+          expect(wrapper.find('input[type="email"]').length).toBe(1);
+        });
+        it('contains 1 password input', () => {
+          expect(wrapper.find('input[type="password"]').length).toBe(1);
         });
       });
       describe('modal footer', () => {
@@ -56,17 +63,54 @@ describe('<LoginModal />', () => {
         it('exists', () => {
           expect(footerWrapper.length).toBe(1);
         });
-        describe('footer buttons', () => {
-          const buttonWrapper = footerWrapper.find(Button);
+        const buttonWrapper = footerWrapper.find(Button);
+
+        it('contains 2 buttons', () => {
+          expect(buttonWrapper.length).toBe(2);
+        });
+        it('contains 1 "Close" button', () => {
+          expect(buttonWrapper.contains('Close')).toBe(true);
+        });
+        it('contains 1 state toggle button', () => {
           const signUpButton = buttonWrapper.find('button.toggleSignUp');
-          it('contains 2 buttons', () => {
-            expect(buttonWrapper.length).toBe(2);
+          expect(signUpButton.length).toBe(1);
+        });
+      });
+      describe('Mode', () => {
+        it('is Sign In by default', () => {
+          expect(wrapper.find(Modal.Title).text()).toEqual('Sign In');
+        });
+
+        describe('Sign In', () => {
+          it('contains only two input fields, email and password', () => {
+            expect(wrapper.find('input').length).toBe(2);
           });
-          it('contains 1 Close button', () => {
-            expect(buttonWrapper.contains('Close')).toBe(true);
+          it('toggles to Sign Up mode on clicking state toggle button', () => {
+            const signUpButton = wrapper.find('button.toggleSignUp');
+            signUpButton.simulate('click');
+            expect(wrapper.find(Modal.Title).text()).toEqual('Sign-up');
           });
-          it('contains 1 state toggle button', () => {
-            expect(signUpButton.length).toBe(1);
+        });
+        describe('Sign Up', () => {
+          it('contains input for first name', () => {
+            expect(wrapper.find('input[placeholder="First name"]').length).toBe(
+              1,
+            );
+          });
+          it('contains input for last name', () => {
+            expect(wrapper.find('input[placeholder="Last name"]').length).toBe(
+              1,
+            );
+          });
+          it('contains datepicker for date of birth', () => {
+            expect(wrapper.find('input[placeholder="mm/dd/yyyy"]').length).toBe(
+              1,
+            );
+          });
+          it('toggles to Sign In mode on clicking state toggle button', () => {
+            const signUpButton = wrapper.find('button.toggleSignUp');
+            signUpButton.simulate('click');
+            expect(wrapper.find(Modal.Title).text()).toEqual('Sign In');
           });
         });
       });

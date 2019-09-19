@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, Col, FormLabel } from 'react-bootstrap';
+import { Form, Col } from 'react-bootstrap';
 import DateOfBirthPicker from '../../atoms/DateOfBirthPicker/DateOfBirthPicker';
 
 export default function SignUpDetails() {
   return (
-    <div>
+    <>
       <Form.Row>
         <Col>
           <Form.Label hidden>First Name:</Form.Label>
@@ -26,6 +26,6 @@ export default function SignUpDetails() {
         <Form.Control type="email" placeholder="New Delhi, Paris, Tokyo" />
         <Form.Text className="text-muted">Where are you from?</Form.Text>
       </Form.Group>
-    </div>
+    </>
   );
 }

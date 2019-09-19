@@ -9,9 +9,6 @@ describe('<Header />', () => {
     it('should contain exactly one logo', () => {
       expect(logoWrapper.length).toBe(1);
     });
-    it("logo should say 'Tripen'", () => {
-      expect(logoWrapper.text()).toEqual('Tripen');
-    });
   });
   describe('Buttons', () => {
     const buttonsWrapper = wrapper.find('.btn');

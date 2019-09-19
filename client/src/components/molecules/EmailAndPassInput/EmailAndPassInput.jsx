@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-export default function EmailAndPassInput() {
+const EmailAndPassInput = () => {
   return (
     <>
       <Form.Group controlId="formBasicEmail">
@@ -17,4 +17,6 @@ export default function EmailAndPassInput() {
       </Form.Group>
     </>
   );
-}
+};
+
+export default EmailAndPassInput;
