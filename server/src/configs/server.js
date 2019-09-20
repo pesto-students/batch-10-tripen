@@ -10,6 +10,10 @@ const app = () => {
         server.set('port', env.port);
         server.use(express.json());
         server.use(express.urlencoded({ extended: false }));
+        server.use(function(req, res, next){
+            res.append('Access-Control-Allow-Origin', ['*']);
+            next();
+        });
         server.use('/api', router);
     };
 
