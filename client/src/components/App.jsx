@@ -10,7 +10,7 @@ export default function App() {
       <Header></Header>
       <BrowserRouter>
         <Route path="/" exact component={HomePage}></Route>
-        <Route path="/timeline" exact component={TimeLinePage}></Route>
+        <Route path="/timeline/:id" exact component={TimeLinePage}></Route>
       </BrowserRouter>
     </div>
   );
