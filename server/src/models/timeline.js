@@ -37,7 +37,6 @@ const timelineSchema = new mongoose.Schema(
      timestamps: true,
    }
 );
-
 const Timeline = mongoose.model('timeline', timelineSchema);
 
 export default Timeline;
