@@ -1,4 +1,5 @@
-import mongoose from '../configs/database';
+import mongoose from 'mongoose';
+import postSchema from './post';
 
 const timelineSchema = new mongoose.Schema(
   {
@@ -36,6 +37,7 @@ const timelineSchema = new mongoose.Schema(
      timestamps: true,
    }
 );
+
 const Timeline = mongoose.model('timeline', timelineSchema);
 
 export default Timeline;
