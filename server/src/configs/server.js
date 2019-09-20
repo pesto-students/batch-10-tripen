@@ -1,5 +1,6 @@
 import express from 'express';
 import env from './env';
+import router from '../router'
 
 const app = () => {
     let application;
@@ -9,6 +10,7 @@ const app = () => {
         server.set('port', env.port);
         server.use(express.json());
         server.use(express.urlencoded({ extended: false }));
+        server.use('/api', router);
     };
 
     const start = () => {
