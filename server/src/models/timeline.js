@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Post from './post';
+import postSchema from './post';
 
 const timelineSchema = new mongoose.Schema(
   {
@@ -19,7 +19,7 @@ const timelineSchema = new mongoose.Schema(
       ref: 'category',
     },
     posts: {
-      type: [Post],
+      type: [postSchema],
       required: true,
     },
     userId: {
