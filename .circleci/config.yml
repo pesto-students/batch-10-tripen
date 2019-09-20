@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install
       - restore_cache:
           key: v1-deps-client-cache-{{ checksum "./client/yarn.lock" }}
       - save_cache:
@@ -34,7 +34,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn install
       - restore_cache:
           key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - save_cache:
