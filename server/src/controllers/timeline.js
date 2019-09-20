@@ -1,4 +1,6 @@
 import express from 'express';
+import postController from './posts';
+
 const router = express.Router();
 
 import timelineModel from '../models/timeline';
@@ -26,5 +28,6 @@ router.post('/', async function(req, res) {
     const response = await timelineObj.save();
     res.status(200).send({ data: response });
 });
+router.use('/post', postController);
 
 export default router;
