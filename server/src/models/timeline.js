@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import postSchema from './post';
+import mongoose from '../configs/database';
 
 const timelineSchema = new mongoose.Schema(
   {
