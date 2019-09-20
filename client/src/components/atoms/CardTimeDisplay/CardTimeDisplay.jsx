@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { TimeContext } from '../../molecules/TimeLineCard/TimeContext';
 
-const CardTimeDisplay = ({ day }) => {
-  const date = day.toLocaleDateString('en-GB', {
+const CardTimeDisplay = () => {
+  const [moment, setMoment] = useContext(TimeContext);
+  const momentValue = moment;
+  const date = momentValue.toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
   });
-  // const time = day.getHours() + ':' + day.getMinutes();
-  const time = day.toLocaleTimeString(undefined, {
+
+  const time = momentValue.toLocaleTimeString(undefined, {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
   });
   return (
     <>
-      <time className="cbp_tmtime" dateTime={day}>
+      <time className="cbp_tmtime" dateTime={momentValue}>
         <span>{date.toString()}</span> <span>{time.toString()}</span>
       </time>
     </>
