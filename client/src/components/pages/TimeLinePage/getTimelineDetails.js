@@ -1,8 +1,8 @@
 import axios from "axios";
 
-async function getTimelineDetails(setTimelineDetails) {
+async function getTimelineDetails(setTimelineDetails, _id) {
   try {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
+    const response = await axios.get(`http://localhost:3030/api/timeline/${_id}`);
     setTimelineDetails(() => response.data);
   } catch (error) {
     console.error(error);
