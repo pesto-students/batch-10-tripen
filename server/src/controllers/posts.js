@@ -4,48 +4,66 @@ import Timeline from '../models/timeline';
 const router = Router();
 const mongoose = require('../configs/database');
 
-router.post('/post', (req, res) => {
+
+
+router.post('/', async (req, res) => {
   try {
-    const timeline = await Timeline.findById({ 
-      id: req.body.parentId
-    });
-    const post = timeline.posts.push({
+    const timeline = await Timeline.findById(
+      req.body.parentId
+    );
+    const post = {
       ...req.body.post
-    });
+    };
     timeline.posts.push(post);
+    timeline.save();
+    console.log('Saved!');
+    res.status(200).json({ 'status' : 'post saved'});
   } catch (error) {
     return res.status(500).json({
-      'success': 'false',
-      'status': 'failed'
+      'status': 'unable to create'
     });
   }
 });
 
-router.delete('/post', (req, res) => {
+router.delete('/', async (req, res) => {
   try {
-    const timeline = await Timeline.findById({
-      id: req.body.parentId
-    });
-    const post = timeline.posts.id(_id).pull();
+    const timeline = await Timeline.findById(
+      req.body.parentId
+    );
+    const postId = req.body.id;
+    const post = timeline.posts.id(id).pull();
+    timeline.save();
   } catch (error) {
     return res.status(500).json({
-      'sucess': 'false',
-      'status': 'failed'
+      'status': 'unable to delete'
     });
   }
 });
 
-router.put('/post', (req, res) => {
+router.put('/', async (req, res) => {
   try {
-    const timeline = await Timeline.findById({
-      id: req.body.parentId
-    });
+    const timeline = await Timeline.findById(
+      req.body.parentId
+    );
     const post = timeline.posts.id(_id);
     post.$set(req.body.post);
   } catch (error) {
     return res.status(500).json({
-      'success': 'false',
-      'status': 'failed'
+      'status': 'unable to update'
+    });
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const timeline = await Timeline.findById(
+      req.body.parentId
+    );
+    const posts = timeline.posts;
+    return res.status(200).json({ posts });
+  } catch ( error ) {
+    return res.status(200).json({
+      'status': 'unable to view'
     });
   }
 });
