@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { Container } from 'react-bootstrap';
-import TripCard from '../../molecules/TripCard/TripCard';
+import TimeLineCard from '../../molecules/TimeLineCard/TimeLineCard';
 import './TimeLine.css';
 
 const TimeLine = () => {
   return (
     <Container>
       <ul className="cbp_tmtimeline">
-        <TripCard></TripCard>
-        <TripCard></TripCard>
-        <TripCard></TripCard>
-        <TripCard></TripCard>
+        <TimeLineCard></TimeLineCard>
+        <TimeLineCard></TimeLineCard>
+        <TimeLineCard></TimeLineCard>
+        <TimeLineCard></TimeLineCard>
       </ul>
     </Container>
   );
