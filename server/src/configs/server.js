@@ -1,5 +1,6 @@
 import express from 'express';
 import env from './env';
+import routes from '../routes';
 
 const app = () => {
     let application;
@@ -9,6 +10,7 @@ const app = () => {
         server.set('port', env.port);
         server.use(express.json());
         server.use(express.urlencoded({ extended: false }));
+        routes.init(server);
     };
 
     const start = () => {
@@ -17,7 +19,6 @@ const app = () => {
         application = server.listen(port, () => {
             console.log(`Tripen server active on port ${port}`);
         });
-        server.get('/', (req, res) => res.status(200).json({ 'Status': 'Online'}));
     };
 
     const stop = () => {
