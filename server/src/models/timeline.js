@@ -1,16 +1,6 @@
 import mongoose from 'mongoose';
 import postSchema from './post';
 
-<<<<<<< HEAD
-const timelineSchema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
-    title: String,
-    tagline: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
-    createdOn: Date,
-    updatedOn: Date
-});
-=======
 const timelineSchema = new mongoose.Schema(
   {
     title: {
@@ -47,7 +37,6 @@ const timelineSchema = new mongoose.Schema(
      timestamps: true,
    }
 );
->>>>>>> d873f83... feat: add mongoose schemas in server/models
 
 const Timeline = mongoose.model('timeline', timelineSchema);
 
