@@ -17,14 +17,14 @@ router.post('/', async function(req, res) {
     const input = req.body;
     const userObj = new userModel({
         _id: mongoose.Types.ObjectId(),
-        firtname: input.fname,
-        lastname: input.fname,
+        firstname: input.fname,
+        lastname: input.lname,
         username: input.username,
         createdOn: new Date(),
         emailId: input.emailId,
         password: input.pwd
     })
-    const response = userObj.save();
+    const response = await userObj.save();
     res.status(200).send({data: response});
 });
 
