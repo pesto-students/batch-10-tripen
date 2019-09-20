@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 export default function App() {
   return (
     <div>
-<<<<<<< HEAD
       <Header />
       <Router>
         <Switch>
@@ -18,13 +17,6 @@ export default function App() {
           <Route component={HomePage} />
         </Switch>
       </Router>
-=======
-      <Header></Header>
-      <BrowserRouter>
-        <Route path="/" exact component={HomePage}></Route>
-        <Route path="/timeline/:id" exact component={TimeLinePage}></Route>
-      </BrowserRouter>
->>>>>>> hackathon-timeline
     </div>
   );
 }
