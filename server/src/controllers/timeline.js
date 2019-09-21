@@ -22,7 +22,7 @@ router.post('/', async function(req, res) {
 });
 router.put('/', async function(req, res) {
     const input = req.body;
-    const oldTimeline = await timelineModel.findById(input.id);
+    const oldTimeline = await timelineModel.findById(input._id);
     oldTimeline.title = input.title;
     oldTimeline.tagline =  input.tagline;
     oldTimeline.coverImg =  input.coverImg;
