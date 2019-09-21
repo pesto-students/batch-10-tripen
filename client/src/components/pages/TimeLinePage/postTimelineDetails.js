@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const postTimelineDetails = (data, successCallback, errorCallback) => {
+  console.log("data :", JSON.stringify(data));
   axios
-    .post(`https://jsonplaceholder.typicode.com/users`, { ...data })
+    .put(`http://localhost:3030/api/timeline`, { ...data })
     .then(res => {
       successCallback(res);
       //   console.log(res);
