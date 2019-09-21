@@ -9,7 +9,9 @@ const TimeLine = props => {
   useEffect(() => {
     setCardList(
       props.timelineData
-        ? [...props.timelineData.posts].map(post => <TimeLineCard post={post} />)
+        ? [...props.timelineData.posts].map(post => (
+            <TimeLineCard editable={props.edit} post={post} />
+          ))
         : [],
     );
   }, [props.timelineData]);
@@ -22,8 +24,10 @@ const TimeLine = props => {
     <Container>
       <ul className='cbp_tmtimeline'>{props.timelineData ? cardList : null}</ul>
       <Button variant='primary' onClick={addCard}>
-        {" "}
-        Add a Card{" "}
+        Add a Card
+      </Button>
+      <Button variant='primary' onClick={props.postTimelineDetails}>
+        Submit Changes
       </Button>
     </Container>
   );
