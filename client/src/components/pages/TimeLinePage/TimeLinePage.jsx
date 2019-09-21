@@ -16,6 +16,7 @@ const TimeLinePage = props => {
         timelineId={props.match.params.timeline_id}
         title={timelineDetails.hasOwnProperty("data") ? timelineDetails.data.title : null}
         tagline={timelineDetails.hasOwnProperty("data") ? timelineDetails.data.tagline : null}
+        data={timelineDetails.hasOwnProperty("data") ? timelineDetails.data : {}}
         postTimelineDetails={postTimelineDetails}
       />
 

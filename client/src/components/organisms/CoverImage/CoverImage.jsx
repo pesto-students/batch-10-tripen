@@ -5,7 +5,7 @@ import "./CoverImage.css";
 const Background =
   "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1542&q=80";
 
-const CoverImage = ({ tagline, title, edit, postTimelineDetails }) => {
+const CoverImage = ({ tagline, title, edit, postTimelineDetails, data }) => {
   console.log("{ tagline, title, edit, postTimelineDetails }", {
     tagline,
     title,
@@ -66,10 +66,7 @@ const CoverImage = ({ tagline, title, edit, postTimelineDetails }) => {
             onClick={() => {
               setButtonText("Loading...");
               postTimelineDetails(
-                {
-                  title: coverTitle,
-                  tagline: coverTagline,
-                },
+                { ...data, title: coverTitle, tagline: coverTagline },
                 response => {
                   setButtonText(edit ? "Done" : "Edit");
                   toggleEditMode();
