@@ -6,6 +6,7 @@ import "./TimeLine.css";
 const TimeLine = props => {
   // const [contentEditMode, setContentEditMode] = useState(false);
   const [cardList, setCardList] = useState([]);
+  console.log('cardList :', cardList);
   useEffect(() => {
     setCardList(
       props.timelineData
@@ -22,7 +23,7 @@ const TimeLine = props => {
   };
   return (
     <Container>
-      <ul className='cbp_tmtimeline'>{props.timelineData ? cardList : null}</ul>
+      <ul className='cbp_tmtimeline'>{cardList }</ul>
       <Button variant='primary' onClick={addCard}>
         Add a Card
       </Button>
