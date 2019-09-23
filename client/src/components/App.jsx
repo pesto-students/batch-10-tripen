@@ -21,7 +21,7 @@ export default function App() {
         <Route path='/trip/:timeline_id' exact component={TimeLinePage} />
         <PrivateRoute path='/profile' exact component={TimeLinePage} />
         <PrivateRoute path='/edit-timeline/:timeline_id' edit={true} component={TimeLinePage} />
-        <PrivateRoute path='/create-timeline' component={TimeLinePage} />
+        <PrivateRoute path='/create-timeline' edit={true} component={TimeLinePage} />
         <Route component={HomePage} />
       </Switch>
     </div>
