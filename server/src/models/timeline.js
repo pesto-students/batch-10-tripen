@@ -6,7 +6,7 @@ const timelineSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, 'No title'],
       trim: true,
     },
     tagline: {
@@ -21,12 +21,12 @@ const timelineSchema = new mongoose.Schema(
     },
     posts: {
       type: [postSchema],
-      required: true,
+      required: [true, 'No posts'],
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
-      required: true,
+      required: [true, 'No userId'],
     },
     isPrivate: {
       type: Boolean,
