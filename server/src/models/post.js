@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from '../configs/database';
 import modelNames from '../utils/constants';
 
-const postSchema = new mongoose.Schema(
+export const postSchema = new mongoose.Schema(
   {
     title: {
       type: String,

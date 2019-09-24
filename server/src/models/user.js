@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose from '../configs/database';
 import bcrypt from 'bcrypt';
 import modelNames from '../utils/constants';
+
 const userSchema = new mongoose.Schema(
   {
     name: {

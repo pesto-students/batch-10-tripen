@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from '../configs/database';
 import modelNames from '../utils/constants';
 
 const categorySchema = new mongoose.Schema(
