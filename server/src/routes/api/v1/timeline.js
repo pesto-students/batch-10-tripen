@@ -14,3 +14,5 @@ router.get('/:timelineId', [/*verifyTimelineId*/], getTimelineById);
 router.delete('/:timelineId', [/*verifyTimelineId*/], deleteTimeline);
 router.post('/', [/*verifyTimelineObject*/], postTimeline);
 router.put('/', [/*verifyTimelineObject*/], updateTimeline);
+
+export default router;
