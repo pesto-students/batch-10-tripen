@@ -3,7 +3,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.post('/signin', [/* signinValidation */], /* signinController */ (req, res) => {
-  res.status(202).json({ status: 'signin controller reached' });
+  res.status(200).json({ status: 'signin controller reached' });
 }); // validations & controllers TODO
 router.post('/signup', [/* signupValidation */], /* signupController */ (req, res) => {
   res.status(201).json({ status: 'signup controller reached' });

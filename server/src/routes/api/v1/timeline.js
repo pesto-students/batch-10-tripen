@@ -1,18 +1,18 @@
 import { Router } from 'express';
-import { 
+import {
   getAllTimeline,
   getTimelineById,
   deleteTimeline,
   postTimeline,
-  updateTimeline
+  updateTimeline,
 } from '../../../controllers/timeline';
 
 const router = Router();
 
 router.get('/all', getAllTimeline);
-router.get('/:timelineId', [/*verifyTimelineId*/], getTimelineById);
-router.delete('/:timelineId', [/*verifyTimelineId*/], deleteTimeline);
-router.post('/', [/*verifyTimelineObject*/], postTimeline);
-router.put('/', [/*verifyTimelineObject*/], updateTimeline);
+router.get('/:timelineId', [/* verifyTimelineId */], getTimelineById);
+router.delete('/:timelineId', [/* verifyTimelineId */], deleteTimeline);
+router.post('/', [/* verifyTimelineObject */], postTimeline);
+router.put('/', [/* verifyTimelineObject */], updateTimeline);
 
 export default router;

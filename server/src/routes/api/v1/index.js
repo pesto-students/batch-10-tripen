@@ -1,9 +1,8 @@
+import { Router } from 'express';
 import authRoutes from './auth';
 import userRoutes from './user';
 import timelineRoutes from './timeline';
 import categoriesRoutes from './categories';
-
-import { Router } from 'express';
 
 const router = Router();
 

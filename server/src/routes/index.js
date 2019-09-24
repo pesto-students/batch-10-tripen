@@ -1,10 +1,11 @@
 import apiRoutes from './api';
 import routeStatus from '../middlewares/printRoute';
 
-const init = server => {
-  server.use('/api',
+const init = (server) => {
+  server.use(
+    '/api',
     routeStatus,
-    apiRoutes
+    apiRoutes,
   );
 };
 
