@@ -1,28 +1,26 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
-import TripCard from '../../molecules/TripCard/TripCard';
+import TripCard from "../../molecules/TripCard/TripCard";
 
-export default function TripList() {
+const TripList = props => {
+  const timelines = props.timelines.data;
   return (
     <Container>
       <Row>
-        <Col md={3}>
-          <TripCard></TripCard>
-        </Col>
-        <Col md={3}>
-          <TripCard></TripCard>
-        </Col>
-        <Col md={3}>
-          <TripCard></TripCard>
-        </Col>
-        <Col md={3}>
-          <TripCard></TripCard>
-        </Col>
-        <Col md={3}>
-          <TripCard></TripCard>
-        </Col>
+        {timelines
+          ? timelines.map(timeline => (
+              <Col
+                md={3}
+                key={timeline._id}
+                onClick={() => props.history.push(`timeline/${timeline._id}`)}
+              >
+                <TripCard timeline={timeline} />
+              </Col>
+            ))
+          : null}
       </Row>
     </Container>
   );
-}
+};
+export default TripList;
