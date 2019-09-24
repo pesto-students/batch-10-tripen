@@ -1,5 +1,6 @@
-import mongoose from '../configs/database';
 import bcrypt from 'bcrypt';
+import uniqueValidator from 'mongoose-unique-validator';
+import mongoose from '../configs/database';
 import modelNames from '../utils/constants';
 
 const userSchema = new mongoose.Schema(
@@ -24,6 +25,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
     location: {
       type: {
@@ -34,16 +36,16 @@ const userSchema = new mongoose.Schema(
       coordinates: {
         type: [Number],
         required: true,
-      }
-    }
+      },
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-userSchema.pre('save', function(next) {
-  if(!this.isModified('password')) {
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) {
     return next();
   }
 
@@ -57,17 +59,19 @@ userSchema.pre('save', function(next) {
   });
 });
 
-userSchema.methods.checkPassword = async function(password) {
+userSchema.methods.checkPassword = function (password) {
   const passwordHash = this.password;
-  await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     bcrypt.compare(password, passwordHash, (err, match) => {
       if (err) {
         return reject(err);
       }
-      resolve(match);
+      return resolve(match);
     });
   });
-}
+};
+
+userSchema.plugin(uniqueValidator);
 
 const User = mongoose.model(modelNames.user, userSchema);
 

@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import env from './env';
 import routes from '../routes';
 
@@ -10,14 +11,16 @@ const app = () => {
     server.set('port', env.port);
     server.use(express.json());
     server.use(express.urlencoded({ extended: false }));
+    server.use(cors());
     routes.init(server);
     return server;
   };
 
   const start = () => {
+    create();
     const port = server.get('port');
     application = server.listen(port, () => {
-      // console.log(`Tripen server active on port ${port}`);
+      console.log(`Tripen server active on port ${port}`);
     });
   };
 
