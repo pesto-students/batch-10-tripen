@@ -1,4 +1,4 @@
-# 'src/components/templates'
+# 'src/views' (templates)
 
 > Templates don't have any Data
 > Basically a Page skeleton

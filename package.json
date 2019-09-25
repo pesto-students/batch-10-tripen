@@ -23,7 +23,6 @@
       "git add"
     ]
   },
-  "dependencies": {},
   "devDependencies": {
     "concurrently": "^4.1.2",
     "eslint": "^6.4.0",

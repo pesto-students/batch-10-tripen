@@ -1,7 +1,7 @@
-# 'src/components/pages'
+# 'src/containers' (pages)
 
 > Similar to _Containers_ they hold the data and control the flow of the same.
-> Pages can have only Templates.
+> Pages can have only Templates(generally just one).
 
 Pages are the final representation
 Pages are specific instances of templates that show what a UI looks like with real representative content in place.[Example](http://atomicdesign.bradfrost.com/images/content/page.png)
