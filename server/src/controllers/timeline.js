@@ -1,9 +1,8 @@
-// import timeline from '../models/timeline';
+import timeline from '../models/timeline';
 
 export const getAllTimeline = async (req, res) => {
-  // const response = await timeline.find({ isPrivate: false });
-  // console.log(response);
-  res.status(200).json({ data: 'response' });
+  const response = await timeline.find({ isPrivate: false });
+  res.status(200).json({ data: response });
 };
 export const getTimelineById = (req, res) => {
   res.status(200).json({ status: 'fetch timeline id' });

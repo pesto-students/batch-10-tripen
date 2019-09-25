@@ -13,6 +13,7 @@ describe('cntl: timeline', () => {
   describe('GET /all', () => {
     it('should return 200', async () => {
       const resp = await request(server).get('/api/v1/timeline/all');
+      expect(resp.body.data).toBeInstanceOf(Array);
       expect(resp.status).toBe(200);
     });
     it('should return 404; invalid path', async () => {
