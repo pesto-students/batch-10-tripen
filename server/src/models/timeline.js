@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import Post from './post';
+import mongoose from '../configs/database';
+import { postSchema } from './post';
 import modelNames from '../utils/constants';
 
 const timelineSchema = new mongoose.Schema(
@@ -20,7 +20,7 @@ const timelineSchema = new mongoose.Schema(
       ref: 'category',
     },
     posts: {
-      type: [Post],
+      type: [postSchema],
       required: true,
     },
     userId: {
