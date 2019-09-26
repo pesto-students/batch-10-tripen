@@ -6,7 +6,7 @@ const timelineSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, 'No title'],
+      required: [true, 'No title provided'],
       trim: true,
     },
     tagline: {
@@ -26,16 +26,16 @@ const timelineSchema = new mongoose.Schema(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
-      required: [true, 'No userId'],
+      required: [true, 'No userId provided'],
     },
     isPrivate: {
       type: Boolean,
       default: false,
-    }
+    },
   },
-   {
-     timestamps: true,
-   }
+  {
+    timestamps: true,
+  },
 );
 
 const Timeline = mongoose.model(modelNames.timeline, timelineSchema);
