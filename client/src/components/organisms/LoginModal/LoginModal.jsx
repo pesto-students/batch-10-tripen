@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import React, { useState, useContext, useEffect } from 'react';
+import { Nav, Modal, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import AuthContext from '../../../context/auth/authContext';
 
-import EmailAndPassInput from '../../molecules/EmailAndPassInput/EmailAndPassInput';
 import SignUpDetails from '../../molecules/SignUpDetails/SignUpDetails';
+import SignInDetails from '../../molecules/SignInDetails/SignInDetails';
+
 
 const LoginModal = () => {
+  const authContext = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const [signUp, setSignUp] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { isAuthenticated } = authContext;
+
+  const closeModal = () => setShow(false);
+  const showModal = () => setShow(true);
 
   const action = signUp ? 'Sign-up' : 'Sign In';
   const buttonMessage = signUp
@@ -22,25 +27,25 @@ const LoginModal = () => {
     setSignUp(!signUp);
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      closeModal();
+    }
+  });
+
   return (
     <>
-      <Button variant="outline-secondary" onClick={handleShow}>
+      <Nav.Link onClick={showModal}>
         <FontAwesomeIcon icon={faSignInAlt} />
         {' '}
         Sign-In/Sign-Up
-      </Button>
-      <Modal show={show} onHide={handleClose}>
+      </Nav.Link>
+      <Modal show={show} onHide={closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>{action}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            {signUp ? <SignUpDetails /> : null}
-            <EmailAndPassInput />
-            <Button variant="primary" type="submit">
-              {action}
-            </Button>
-          </Form>
+          {signUp ? <SignUpDetails /> : <SignInDetails />}
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -52,7 +57,7 @@ const LoginModal = () => {
           </Button>
           <Button
             variant="secondary"
-            onClick={handleClose}
+            onClick={closeModal}
             className="close-button"
           >
             Close
