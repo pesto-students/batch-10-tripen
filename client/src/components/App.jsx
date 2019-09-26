@@ -7,9 +7,16 @@ import TimeLinePage from './pages/TimeLinePage/TimeLinePage';
 import PrivateRoute from './molecules/PrivateRoute';
 import Profile from '../containers/Profile';
 import NotFound from './pages/NotFound/NotFound';
+import AuthState from '../context/auth/AuthState';
+import setAuthToken from '../utils/setAuthToken';
 
-export default function App() {
-  return (
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => (
+  <AuthState>
     <Router>
       <Header />
       <Switch>
@@ -18,10 +25,15 @@ export default function App() {
         <Route path="/sign-up" exact render={(props) => <HomePage {...props} modalState signUp />} />
         <Route path="/timeline/:timeline_id" exact component={TimeLinePage} />
         <Route path="/profile/:userId" exact component={Profile} />
+        <PrivateRoute path="/profile" exact component={Profile} />
+        <Route path="/profile/id" exact component={Profile} />
+        <Route path="/profile/:id" exact component={Profile} />
         <PrivateRoute path="/edit-timeline/:timeline_id" edit component={TimeLinePage} />
         <PrivateRoute path="/create-timeline" edit component={TimeLinePage} />
         <Route component={NotFound} />
       </Switch>
     </Router>
-  );
-}
+  </AuthState>
+);
+
+export default App;

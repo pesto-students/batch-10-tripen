@@ -1,28 +1,53 @@
-import React from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Navbar, Nav } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRoute, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faRoute, faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
+import AuthContext from '../../../context/auth/authContext';
+import LogoutButton from '../../atoms/LogoutButton/LogoutButton';
 
 import LoginModal from '../LoginModal/LoginModal';
 
-const Header = () => (
-  <Navbar bg="light" expand="lg">
-    <Navbar.Brand href="/">
-      <FontAwesomeIcon icon={faRoute} />
-      {' '}
-      Tripen
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        <Button variant="primary">
-          <FontAwesomeIcon icon={faPlus} />
+const Header = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, name } = authContext;
+  return (
+    <Navbar bg="light" expand="lg">
+      <LinkContainer to="/">
+        <Navbar.Brand>
+          <FontAwesomeIcon icon={faRoute} />
           {' '}
-          Create Timeline
-        </Button>
-        <LoginModal />
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-);
+      Tripen
+        </Navbar.Brand>
+      </LinkContainer>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+
+          {isAuthenticated ? (
+            <>
+              <LinkContainer to="/profile/sss">
+                <Nav.Link>
+                Welcome,
+                  {' '}
+                  <FontAwesomeIcon icon={faUser} />
+                  {' '}
+                  {name}
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/">
+                <Nav.Link>
+                  <FontAwesomeIcon icon={faPlus} />
+                  {' '}
+                Create Timeline
+                </Nav.Link>
+              </LinkContainer>
+              <LogoutButton />
+            </>
+          ) : <LoginModal />}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
 export default Header;
