@@ -1,0 +1,50 @@
+{
+  "_id": {
+    "$oid": "5d85853b0b1e947b8680dca8"
+  },
+  "posts": [
+    {
+      "location": {
+        "coordinates": [200.123, 453.12],
+        "type": "Point"
+      },
+      "_id": {
+        "$oid": "5d85857d0b1e947b8680dcaa"
+      },
+      "title": "Haryali to Banjar",
+      "coverImg": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2915767.jpg",
+      "content": "So I used to live in a very haryali-ed place, but we cut all trees to build bigger mansions, and now all we have are big Banjars :-(",
+      "displayTime": {
+        "$date": "2019-12-09T00:00:00.000Z"
+      }
+    },
+    {
+      "location": {
+        "coordinates": [200.123, 453.12],
+        "type": "Point"
+      },
+      "_id": {
+        "$oid": "5d85857f0b1e947b8680dcab"
+      },
+      "title": "Haryali to Banjar",
+      "coverImg": "https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2915767.jpg",
+      "content": "So I used to live in a very haryali-ed place, but we cut all trees to build bigger mansions, and now all we have are big Banjars :-(",
+      "displayTime": {
+        "$date": "2019-12-09T00:00:00.000Z"
+      }
+    }
+  ],
+  "isPrivate": false,
+  "userId": {
+    "$oid": "5d84ad70d7612f5ab55762e2"
+  },
+  "title": "Making tour of 'Gud naal Ishq Mitha' Pesto Tech 123",
+  "tagline": "How Honey Singh filmed another totally forgettable song!",
+  "createdAt": {
+    "$date": "2019-09-21T02:04:43.907Z"
+  },
+  "updatedAt": {
+    "$date": "2019-09-21T09:41:25.079Z"
+  },
+  "__v": 2
+}
