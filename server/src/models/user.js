@@ -34,16 +34,16 @@ const userSchema = new mongoose.Schema(
       coordinates: {
         type: [Number],
         required: true,
-      }
-    }
+      },
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-userSchema.pre('save', function(next) {
-  if(!this.isModified('password')) {
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password')) {
     return next();
   }
 
@@ -57,7 +57,7 @@ userSchema.pre('save', function(next) {
   });
 });
 
-userSchema.methods.checkPassword = async function(password) {
+userSchema.methods.checkPassword = async function (password) {
   const passwordHash = this.password;
   await new Promise((resolve, reject) => {
     bcrypt.compare(password, passwordHash, (err, match) => {
@@ -67,7 +67,7 @@ userSchema.methods.checkPassword = async function(password) {
       resolve(match);
     });
   });
-}
+};
 
 const User = mongoose.model(modelNames.user, userSchema);
 

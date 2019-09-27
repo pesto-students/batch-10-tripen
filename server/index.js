@@ -2,11 +2,12 @@ import app from './src/configs/server';
 
 const appInstance = app();
 
+appInstance.create();
 appInstance.start();
 
 const stopApplication = () => {
-    appInstance.stop();
-}
+  appInstance.stop();
+};
 
 process.on('SIGTERM', stopApplication);
 process.on('SIGINT', stopApplication);
