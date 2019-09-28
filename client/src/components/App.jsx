@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage';
 import TimeLinePage from './pages/TimeLinePage/TimeLinePage';
 import PrivateRoute from './molecules/PrivateRoute';
 import Profile from '../containers/Profile';
+import NotFound from './pages/NotFound/NotFound';
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
         <Route path="/profile/:userId" exact component={Profile} />
         <PrivateRoute path="/edit-timeline/:timeline_id" edit component={TimeLinePage} />
         <PrivateRoute path="/create-timeline" edit component={TimeLinePage} />
-        <Route component={HomePage} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );
