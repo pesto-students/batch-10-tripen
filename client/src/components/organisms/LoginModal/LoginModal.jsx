@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+
 import EmailAndPassInput from '../../molecules/EmailAndPassInput/EmailAndPassInput';
 import SignUpDetails from '../../molecules/SignUpDetails/SignUpDetails';
 
@@ -9,8 +12,6 @@ const LoginModal = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const initSignUp = () => setSignUp(true);
-  const initSignIn = () => setSignUp(false);
 
   const action = signUp ? 'Sign-up' : 'Sign In';
   const buttonMessage = signUp
@@ -18,12 +19,14 @@ const LoginModal = () => {
     : 'Dont have an account? Sign Up.';
 
   const signUpToggle = () => {
-    signUp ? initSignIn() : initSignUp();
+    setSignUp(!signUp);
   };
 
   return (
     <>
-      <Button variant='outline-secondary' onClick={handleShow}>
+      <Button variant="outline-secondary" onClick={handleShow}>
+        <FontAwesomeIcon icon={faSignInAlt} />
+        {' '}
         Sign-In/Sign-Up
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -32,25 +35,25 @@ const LoginModal = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {signUp ? <SignUpDetails></SignUpDetails> : null}
-            <EmailAndPassInput></EmailAndPassInput>
-            <Button variant='primary' type='submit'>
+            {signUp ? <SignUpDetails /> : null}
+            <EmailAndPassInput />
+            <Button variant="primary" type="submit">
               {action}
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button
-            variant='link'
+            variant="link"
             onClick={signUpToggle}
-            className='toggleSignUp'
+            className="toggleSignUp"
           >
             {buttonMessage}
           </Button>
           <Button
-            variant='secondary'
+            variant="secondary"
             onClick={handleClose}
-            className='close-button'
+            className="close-button"
           >
             Close
           </Button>
