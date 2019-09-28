@@ -6,7 +6,7 @@ const ImgDropAndCrop = () => {
   const handleOnDrop = (files) => (console.log(files));
   return (
     <div>
-      <Dropzone onDrop={handleOnDrop} maxSize={3145728}>
+      <Dropzone onDrop={handleOnDrop} maxSize={3145728} multiple={false} accept="image/*">
         {({ getRootProps, getInputProps }) => (
           <section>
             <div {...getRootProps()}>
