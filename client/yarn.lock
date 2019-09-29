@@ -2571,6 +2571,11 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
+clsx@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.0.4.tgz#0c0171f6d5cb2fe83848463c15fcc26b4df8c2ec"
+  integrity sha512-1mQ557MIZTrL/140j+JVdRM6e31/OA4vTYxXgqIIZlndyfjHpyawKZia1Im05Vp9BWmImkcNrNtFYQMyFcgJDg==
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -2801,7 +2806,7 @@ core-js-compat@^3.1.1:
     browserslist "^4.6.6"
     semver "^6.3.0"
 
-core-js@3.2.1:
+core-js@3.2.1, core-js@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.2.1.tgz#cd41f38534da6cc59f7db050fe67307de9868b09"
   integrity sha512-Qa5XSVefSVPRxy2XfUC13WbvqkxhkwB3ve+pgCQveNgYzbM/UxZeu1dcOX/xr4UmfUd+muuvsaxilQzCyUurMw==
@@ -8465,6 +8470,15 @@ react-icomoon@^1.0.1:
   integrity sha512-Kcb4M28EDrhYLhjaGm6b/1S4nCqQ52IBI+4KzGB1plkEHGOGj2xETN/nfgQy797jJmntB65fuxSjEJ5wXwjvXw==
   dependencies:
     react "^16.4.1"
+
+react-image-crop@^8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/react-image-crop/-/react-image-crop-8.3.1.tgz#80e3f1f6dd987cab3f04469d4764c5422a4e74c7"
+  integrity sha512-oVNonX8L04yjQfYkcLmBcAowJApcVGquGjjhZMY22DsI8+Zs/0YT7OJD8jKSzWphSiBzR0Vc4ewGDjzKXBfoPw==
+  dependencies:
+    clsx "^1.0.4"
+    core-js "^3.2.1"
+    prop-types "^15.7.2"
 
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.9.0"
