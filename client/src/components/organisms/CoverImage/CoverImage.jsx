@@ -31,7 +31,7 @@ const CoverImage = () => {
       <div className="layer">
         <div className="flex-container">
           <Button onClick={handleClick}>{edit ? 'Done' : 'Edit'}</Button>
-          <ImgDropAndCrop />
+          {edit ? <ImgDropAndCrop /> : null}
           {edit ? (
             <Form onSubmit={handleSubmit}>
               <Form.Group>

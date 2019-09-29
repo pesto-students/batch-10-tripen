@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from 'react-bootstrap';
+import './ImgDropAndCrop.css';
 
 
 const ImgDropAndCrop = () => {
@@ -45,11 +46,11 @@ const ImgDropAndCrop = () => {
   );
   return (
     <div>
-      <div {...getRootProps({ className: 'dropzone text-center' })}>
+      <div {...getRootProps({ className: 'dropzone text-center pl-5 pr-5 pt-3 mt-4 mb-4' })}>
         <input {...getInputProps()} />
         {imgSrc === null ? null : imageDiv()}
         {files.length > 0 ? <p>{files}</p>
-          : <p>Drag &apos;n&apos; drop cover image here. (Max size 3145728 bytes)</p>}
+          : <h5>Drag and drop cover image here or click/touch to upload.(Max size 3 MB)</h5>}
       </div>
     </div>
   );
