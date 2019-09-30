@@ -6,7 +6,7 @@ import TimelineCard from './index';
 
 describe('<TimelineCard />', () => {
   const timelineData = {
-    timelineId: '786',
+    _id: '786',
     title: 'Khiladi',
     tagline: "Khiladi bhaiya's journey",
   };

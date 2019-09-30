@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './organisms/Header/Header';
-import HomePage from './pages/HomePage/HomePage';
+import HomePage from '../containers/Home';
 import TimeLinePage from './pages/TimeLinePage/TimeLinePage';
 import PrivateRoute from './molecules/PrivateRoute';
 import Profile from '../containers/Profile';

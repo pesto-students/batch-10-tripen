@@ -8,10 +8,11 @@ describe('<TimelineList />', () => {
   describe('for timelines with data', () => {
     const timelines = [
       {
-        timelineId: 'DK22T123',
-        coverPicUrl: '',
+        _id: 'DK22T123',
+        coverImg: '',
         title: 'title123',
         tagline: 'tagline123',
+        updatedAt: '2019-10-01T12:50:11Z',
       },
     ];
     const wrapper = shallow(<TimelineList timelines={timelines} />);
