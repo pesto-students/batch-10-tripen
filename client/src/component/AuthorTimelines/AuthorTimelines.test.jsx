@@ -11,26 +11,25 @@ describe('<AuthorTimelines />', () => {
       userId: '12344',
       isLoggedIn: true,
       username: 'DK22',
-      fullName: 'Donkey Kong',
-      profilePic: 'http://lorempixel.com/100/100/people/',
+      name: 'Donkey Kong',
       publicTimelines: [
         {
-          timelineId: 'DK22T123',
-          coverPicUrl: '',
+          _id: 'DK22T123',
+          coverImg: '',
           title: 'title123',
           tagline: 'tagline123',
         },
         {
-          timelineId: 'DK22T1234',
-          coverPicUrl: '',
+          _id: 'DK22T1234',
+          coverImg: '',
           title: 'title1234',
           tagline: 'tagline1234',
         },
       ],
       privateTimelines: [
         {
-          timelineId: '_DK22T12345',
-          coverPicUrl: '',
+          _id: '_DK22T12345',
+          coverImg: '',
           title: 'title12345',
           tagline: 'tagline12345',
         },
@@ -60,14 +59,14 @@ describe('<AuthorTimelines />', () => {
       profilePic: 'http://lorempixel.com/100/100/people/',
       publicTimelines: [
         {
-          timelineId: 'DK22T123',
-          coverPicUrl: '',
+          _id: 'DK22T123',
+          coverImg: '',
           title: 'title123',
           tagline: 'tagline123',
         },
         {
-          timelineId: 'DK22T1234',
-          coverPicUrl: '',
+          _id: 'DK22T1234',
+          coverImg: '',
           title: 'title1234',
           tagline: 'tagline1234',
         },

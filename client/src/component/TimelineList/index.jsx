@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -7,7 +8,7 @@ const TimelineList = ({ timelines }) => (
   <Row>
     {timelines && timelines.length > 0 ? (
       timelines.map((timeline) => (
-        <Col md={4} key={timeline.timelineId}>
+        <Col md={4} key={timeline._id}>
           <TimelineCard timelineData={timeline} />
         </Col>
       ))
@@ -25,11 +26,11 @@ TimelineList.defaultProps = {
 TimelineList.propTypes = {
   timelines: PropTypes.arrayOf(
     PropTypes.shape({
-      timelineId: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       tagline: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string,
-      lastUpdated: PropTypes.string,
+      coverImg: PropTypes.string,
+      updatedAt: PropTypes.string,
     }),
   ),
 };
