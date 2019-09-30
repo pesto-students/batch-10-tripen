@@ -30,7 +30,6 @@ const timelineSchema = new mongoose.Schema(
     },
     isPrivate: {
       type: Boolean,
-      required: true,
       default: false,
     }
   },
