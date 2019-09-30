@@ -1,0 +1,12 @@
+.button-group button {
+  margin: 2px;
+}
+.input-box {
+  text-align: center;
+}
+.input-box:hover {
+  border-bottom: 1px solid skyblue !important;
+}
+.author-image {
+  margin: 5px;
+}
