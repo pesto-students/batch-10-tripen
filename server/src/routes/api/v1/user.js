@@ -1,17 +1,25 @@
 import { Router } from 'express';
+import { verifyObjectId, isValidUser } from '../../../middlewares/user';
+import {
+  controllerStatus, getUser, updateUser, deleteUser, getPublicProfile,
+} from '../../../controllers/v1/user';
 
 const router = Router();
 
-router.get('/:userId', [/*validateUserId*/], /*userController.getUser*/ (req, res) => {
-  res.status(200).json({ 'status': 'user profile returned' });
-});
+router
+  .route('/')
+  .all(isValidUser)
+  .get(getUser)
+  .put(updateUser)
+  .delete(deleteUser);
 
-router.put('/:userId', [/*validateUserId*/], /*userController.updateUser*/ (req, res) => {
-  res.status(201).json({ 'status': 'user profile updated' });
-});
+router
+  .route('/status')
+  .get(controllerStatus);
 
-router.delete('/:userId', [/*vaildateUserId*/], /*userController.deleteUser*/ (req, res) => {
-  res.status(200).json({ 'status': 'user profile deleted' });
-});
+router
+  .route('/:userId')
+  .all(verifyObjectId)
+  .get(getPublicProfile);
 
 export default router;
