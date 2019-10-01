@@ -26,7 +26,7 @@ const router = Router();
 router
   .route('/')
   .get(getAllTimeline)
-  .post(verifyTimelineObject, postTimeline);
+  .post(verifyTimelineObject, sortPostsByDisplayTime, postTimeline);
 router
   .route('/:id')
   .get(verifyMongooseId, getTimelineById)
@@ -40,7 +40,8 @@ router
     verifyPosts,
     sortPostsByDisplayTime,
     updateTimeline);
-router.get('/all/:id',
+router
+  .get('/all/:id',
   verifyMongooseId,
   verifyIfUserSignedIn,
   getTokenFromSignedInUser,

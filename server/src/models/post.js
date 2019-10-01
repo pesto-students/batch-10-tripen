@@ -16,24 +16,22 @@ export const postSchema = new mongoose.Schema(
       required: true,
     },
     location: {
-      type: {
+      place: {
         type: String,
-        enum: ['Point'],
         required: true,
       },
       coordinates: {
         type: [Number],
-        required: true,
-      }
+      },
     },
     displayTime: {
       type: Date,
       required: true,
-    }
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Post = mongoose.model(modelNames.post, postSchema);
