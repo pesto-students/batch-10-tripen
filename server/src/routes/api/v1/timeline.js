@@ -8,15 +8,29 @@ import {
 } from '../../../controllers/timeline';
 import {
   verifyTimelineId,
-  verifyTimelineObject
+  verifyTimelineObject,
+  verifyPostsInTimeline,
+  verifyPostsLengthInTimeline,
+  sortPostsByDisplayTime
 } from '../../../middlewares/timeline';
 
 const router = Router();
 
-router.get('/all', getAllTimeline);
-router.get('/:id', verifyTimelineId, getTimelineById);
-router.delete('/:id', verifyTimelineId, deleteTimeline);
-router.post('/', verifyTimelineObject, postTimeline);
-router.put('/:id', verifyTimelineId, verifyTimelineObject, updateTimeline);
+router
+  .route('/')
+  .get(getAllTimeline)
+  .post(verifyTimelineObject, postTimeline);
+router
+  .route('/:id')
+  .get(verifyTimelineId, getTimelineById)
+  .delete(verifyTimelineId, deleteTimeline)
+  .put(
+    verifyTimelineId,
+    verifyTimelineObject,
+    verifyPostsInTimeline,
+    verifyPostsLengthInTimeline,
+    sortPostsByDisplayTime,
+    updateTimeline);
+
 
 export default router;
