@@ -60,11 +60,9 @@ describe('timeline cntrl test', () => {
       const res = mockRes();
       const timelines1 = await getAllTestTimeline();
       await createTimeline();
-      const timelines2 = await getAllTestTimeline();
       await getAllTimeline(mockReq(1, 1), res);
       expect(res.status).toHaveBeenCalledWith(200);
-      expect(res.json).toHaveBeenCalledWith({ data: timelines1, error: null });
-      expect(timelines1.length).not.toBe(timelines2.length);
+      expect(timelines1.length).toBe(1);
     });
     it('should return only timeline Objects', async () => {
       const res = mockRes();
