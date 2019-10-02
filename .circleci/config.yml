@@ -34,7 +34,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: yarn install
+          command: yarn install && echo ${CIRCLE_BRANCH}
       - restore_cache:
           key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - save_cache:
@@ -62,8 +62,8 @@ jobs:
           key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - deploy:
           name: Deploy to heroku server
-          command:
-            git subtree push --prefix server https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+          command: |
+            git subtree push --prefix server https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_TEST.git master
 workflows:
   version: 2
   build-test:
