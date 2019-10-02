@@ -1,12 +1,12 @@
-import InMemDb from '../configs/dbtest';
+import InMemDb from '../../configs/dbtest';
 import {
   createTimeline,
   getAllTestTimeline,
   getTestTimelineById,
   createTestTimeline,
   getMongooseId,
-} from '../utils/dummyData';
-import Timeline from '../models/timeline';
+} from '../../utils/dummyData';
+import Timeline from '../../models/timeline';
 import {
   getAllTimeline,
   getTimelineById,
@@ -14,7 +14,7 @@ import {
   updateTimeline,
   deleteTimeline,
 } from './timeline';
-import mongoose from '../configs/database';
+import mongoose from '../../configs/database';
 
 
 beforeAll(async () => {

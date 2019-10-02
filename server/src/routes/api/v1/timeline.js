@@ -4,15 +4,22 @@ import {
   getTimelineById,
   deleteTimeline,
   postTimeline,
-  updateTimeline
-} from '../../../controllers/timeline';
+  updateTimeline,
+  getTimelineByUserId
+} from '../../../controllers/v1/timeline';
 import {
-  verifyTimelineId,
+  verifyMongooseId,
   verifyTimelineObject,
   verifyPostsInTimeline,
   verifyPostsLengthInTimeline,
-  sortPostsByDisplayTime
+  sortPostsByDisplayTime,
+  verifyPosts
 } from '../../../middlewares/timeline';
+import {
+  verifyIfUserSignedIn,
+  getTokenFromSignedInUser,
+  verifyUserPermission
+} from '../../../middlewares/auth';
 
 const router = Router();
 
@@ -22,15 +29,21 @@ router
   .post(verifyTimelineObject, postTimeline);
 router
   .route('/:id')
-  .get(verifyTimelineId, getTimelineById)
-  .delete(verifyTimelineId, deleteTimeline)
+  .get(verifyMongooseId, getTimelineById)
+  .delete(verifyMongooseId, deleteTimeline)
   .put(
-    verifyTimelineId,
+    verifyMongooseId,
     verifyTimelineObject,
+    verifyUserPermission,
     verifyPostsInTimeline,
     verifyPostsLengthInTimeline,
+    verifyPosts,
     sortPostsByDisplayTime,
     updateTimeline);
-
+router.get('/all/:id',
+  verifyMongooseId,
+  verifyIfUserSignedIn,
+  getTokenFromSignedInUser,
+  getTimelineByUserId);
 
 export default router;
