@@ -79,6 +79,3 @@ workflows:
       - deploy-server:
           requires:
             - test-server
-          filters:
-            branches:
-              only: thapasya/fix-deploy_bug
