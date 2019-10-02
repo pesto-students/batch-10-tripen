@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import Timeline from '../models/timeline';
+import Post from '../models/post';
 
-export const verifyTimelineId = (req, res, next) => {
+export const verifyMongooseId = (req, res, next) => {
   const { id } = req.params;
   try {
     if(mongoose.Types.ObjectId.isValid(id)) {
@@ -11,6 +12,17 @@ export const verifyTimelineId = (req, res, next) => {
     }
   } catch(err) {
     return res.status(500).json({ msg: err.message });
+  }
+}
+export const verifyPosts = (req, res, next) => {
+  try {
+    const { posts } = req.body;
+    if (posts !== undefined && posts.length > 0) {
+      posts.map((post) => new Post(post));
+    }
+    next();
+  } catch(err) {
+    res.status(400).json({ error: err.message });
   }
 }
 export const verifyTimelineObject = (req, res, next) => {

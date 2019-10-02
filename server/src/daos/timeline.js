@@ -1,5 +1,7 @@
 import Timeline from '../models/timeline';
 import { homePageTimelineFields } from '../utils/constants';
+import errorHandler from '../utils/errorMessage';
+import returnMessage from '../utils/statusMessage';
 
 export const getTimelineById = async (id) => {
   const response = {
@@ -85,6 +87,21 @@ export const updateTimeline = async (_id, updatedTimeline) => {
         new: true,
       },
     );
+  } catch (err) {
+    response.error = err.message;
+    response.status = 400;
+  }
+  return response;
+};
+export const getTimelineByUser = async (userId, isFetchAll) => {
+  const response = {
+    data: [],
+    error: null,
+    status: 200,
+  };
+  try {
+    const filter = isFetchAll ? { userId: userId } : { userId: userId, isPrivate: false };
+    response.data = await Timeline.find(filter, homePageTimelineFields);
   } catch (err) {
     response.error = err.message;
     response.status = 400;
