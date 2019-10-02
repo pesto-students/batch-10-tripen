@@ -1,5 +1,14 @@
+import InMemDb from '../../configs/dbtest';
 import { newToken, verifyToken } from '../../utils/helpers/jwtHelper';
 import { signupController, signinController } from './auth';
+
+beforeAll(async () => {
+  await InMemDb.connect();
+});
+
+afterAll(async () => {
+  await InMemDb.disconnect();
+});
 
 describe('Authentication controllers:', () => {
   describe('newToken:', () => {
@@ -77,7 +86,8 @@ describe('Authentication controllers:', () => {
       await signupController(wrongMockReq, mockRes);
       expect(statusLog).toBe(400);
       expect(resultLog.success).toBe(false);
-      expect(resultLog.message).toBe('Incorrect / incomplete field values. Please correct.');
+      expect(resultLog).toHaveProperty('error');
+      expect(resultLog.message).not.toBe('Sign-up successful');
     });
 
     it('requires inputs', async () => {
