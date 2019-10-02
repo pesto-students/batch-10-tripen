@@ -81,4 +81,4 @@ workflows:
             - test-server
           filters:
             branches:
-              only: master
+              only: thapasya/fix-deploy_bug
