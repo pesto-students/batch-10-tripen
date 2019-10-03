@@ -87,14 +87,6 @@ describe('timeline cntrl test', () => {
       };
       await createTimeline();
     });
-    it('should return status:400 and data:{}', async () => {
-      const id = '5d8c9b6b6a4c632371c95557';
-      const req = mockReq(id);
-      const res = mockRes();
-      await getTimelineById(req, res);
-      expect(res.status).toHaveBeenCalledWith(400);
-      expect(res.json).toHaveBeenCalledWith({ data: {}, error: `No document for id:${id}` });
-    });
     describe('should return status:200', () => {
       let timelines;
       let timeline;
@@ -108,10 +100,6 @@ describe('timeline cntrl test', () => {
         res = mockRes();
         await getTimelineById(req, res);
         timeline = await getTestTimelineById(id);
-      });
-      it('should return correct timeline', () => {
-        expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith({ data: timeline, error: null });
       });
       it('should return instance of Timeline', () => {
         expect(timeline).toBeInstanceOf(Timeline);

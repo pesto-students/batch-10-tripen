@@ -33,7 +33,6 @@ export const deleteTimelineById = async (_id) => {
   try {
     response.data = await Timeline.deleteOne({ _id });
     if (response.data.deletedCount === 0) {
-      response.data = {};
       response.error = `No document for id:${_id}`;
       response.status = 400;
     }
