@@ -8,7 +8,7 @@ const router = Router();
 
 router
   .route('/')
-  .all(isValidUser)
+  .all(verifyObjectId, isValidUser)
   .get(getUser)
   .put(updateUser)
   .delete(deleteUser);

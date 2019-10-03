@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import uniqueValidator from 'mongoose-unique-validator';
 import mongoose from '../configs/database';
 import modelNames from '../utils/constants';
+import Timeline from './timeline';
 
 const userSchema = new mongoose.Schema(
   {
@@ -54,6 +55,12 @@ userSchema.pre('save', function (next) {
     this.password = hash;
     next();
   });
+});
+
+userSchema.pre('remove', function (next) {
+  // Remove all Timelines that reference the removed user
+  Timeline.remove({ userId: this._id }).exec();
+  return next();
 });
 
 userSchema.methods.checkPassword = function (password) {
