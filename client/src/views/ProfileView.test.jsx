@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import ProfileView from './Profile';
 import AuthorTimelines from '../component/AuthorTimelines';
 import AuthorInfoSection from '../component/AuthorInfoSection';
+import LoadingIndicator from '../component/LoadingIndicator';
 
 describe('<ProfileView />', () => {
   const userData = {
@@ -34,14 +35,29 @@ describe('<ProfileView />', () => {
       },
     ],
   };
-  const wrapper = shallow(<ProfileView userData={userData} />);
-  it('renders', () => {
-    expect(wrapper.exists()).toBe(true);
+  describe('<ProfileView isLoading={true} isLoggedInUserProfile={true} userData={userData} />', () => {
+    const wrapper = shallow(
+      <ProfileView isLoading isLoggedInUserProfile userData={userData} />,
+    );
+    it('renders', () => {
+      expect(wrapper.exists()).toBe(true);
+    });
+    it('contains LoadingIndicator', () => {
+      expect(wrapper.find(LoadingIndicator).length).toBe(1);
+    });
   });
-  it('contains AuthorTimelines', () => {
-    expect(wrapper.find(AuthorTimelines).length).toBe(1);
-  });
-  it('contains AuthorInfoSection', () => {
-    expect(wrapper.find(AuthorInfoSection).length).toBe(1);
+  describe('<ProfileView isLoading={true} isLoggedInUserProfile={true} userData={userData} />', () => {
+    const wrapper = shallow(
+      <ProfileView isLoading={false} isLoggedInUserProfile userData={userData} />,
+    );
+    it('renders', () => {
+      expect(wrapper.exists()).toBe(true);
+    });
+    it('contains AuthorTimelines', () => {
+      expect(wrapper.find(AuthorTimelines).length).toBe(1);
+    });
+    it('contains AuthorInfoSection', () => {
+      expect(wrapper.find(AuthorInfoSection).length).toBe(1);
+    });
   });
 });

@@ -14,24 +14,18 @@ const ProfileView = ({
         <LoadingIndicator text="fetching profile data ... " />
       ) : (
         <>
-          {errorMsg ? (
-            <p>{errorMsg}</p>
-          ) : (
-            <>
-              <AuthorInfoSection
-                isLoggedInUserProfile={false}
-                fullName={userData.name}
-                username={userData.username}
-                profilePic={userData.profilePic}
-              />
-              <hr />
-              <AuthorTimelines
-                isLoggedInUserProfile={isLoggedInUserProfile}
-                privateTimelines={userData.privateTimelines}
-                publicTimelines={userData.publicTimelines}
-              />
-            </>
-          )}
+          <AuthorInfoSection
+            isLoggedInUserProfile={false}
+            fullName={userData.name}
+            username={userData.username}
+            profilePic={userData.profilePic}
+          />
+          <hr />
+          <AuthorTimelines
+            isLoggedInUserProfile={isLoggedInUserProfile}
+            privateTimelines={userData.privateTimelines}
+            publicTimelines={userData.publicTimelines}
+          />
         </>
       )}
     </div>
