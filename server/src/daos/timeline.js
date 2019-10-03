@@ -1,5 +1,6 @@
 import Timeline from '../models/timeline';
 import { homePageTimelineFields } from '../utils/constants';
+import User from '../models/user';
 
 export const getTimelineById = async (id) => {
   const response = {
@@ -8,7 +9,10 @@ export const getTimelineById = async (id) => {
     status: 200,
   };
   try {
-    response.data = await Timeline.findById(id);
+    response.data.timeline = await Timeline.findById(id);
+    const { userId }= response.data.timeline;
+    response.data.user = {};
+    response.data.user = await User.findOne(userId, 'name');
     if (response.data === null) {
       response.data = {};
       response.error = `No document for id:${id}`;

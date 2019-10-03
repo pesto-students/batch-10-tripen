@@ -1,7 +1,7 @@
 import User from '../../models/user';
 import statusMessage from '../../utils/statusMessage';
 import errorMessage from '../../utils/errorMessage';
-import { extractTokenFromHeader } from '../../utils/helpers/jwtHelper';
+import { extractTokenFromHeader, newToken } from '../../utils/helpers/jwtHelper';
 
 const controllerStatus = (req, res) => res.status(200).json({ status: 'online' });
 
@@ -40,11 +40,12 @@ const updateUser = async (req, res) => {
       update,
       { new: true },
     ).lean().exec();
+    const token = newToken({ ...user });
     return statusMessage({
       success: true,
-      status: 201,
+      status: 200,
       message: 'User updated.',
-      user: { ...user },
+      user: { ...user, token },
     }, req, res);
   } catch (error) {
     return errorMessage({
