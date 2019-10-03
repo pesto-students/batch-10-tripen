@@ -29,8 +29,6 @@ export default function SignUpDetails() {
             onChange={onChange}
             name="email"
             required
-            pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}"
-            title="Must contain at least a digit and an alphabet, and should be of 8 or more characters"
             minLength="8"
             maxLength="127"
           />
