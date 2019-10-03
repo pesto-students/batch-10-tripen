@@ -15,7 +15,7 @@ describe('Authentication controllers:', () => {
     it('creates a new jwt for user', async () => {
       const id = 123;
       const token = newToken({ id });
-      const user = await verifyToken(token);
+      const user = verifyToken(token);
       expect(user.id).toBe(id);
     });
   });
@@ -33,7 +33,7 @@ describe('Authentication controllers:', () => {
         },
       };
       const token = newToken(inputUser);
-      const user = await verifyToken(token);
+      const user = verifyToken(token);
       expect(user.name).toBe(inputUser.name);
     });
   });
@@ -125,7 +125,7 @@ describe('Authentication controllers:', () => {
           return this;
         },
         async json(result) {
-          const user = await verifyToken(result.user.token);
+          const user = verifyToken(result.user.token);
           expect(user.email).toBe('hello@hello.com');
         },
       };

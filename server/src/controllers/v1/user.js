@@ -1,15 +1,13 @@
 import User from '../../models/user';
 import statusMessage from '../../utils/statusMessage';
 import errorMessage from '../../utils/errorMessage';
-import { extractTokenFromHeader, newToken } from '../../utils/helpers/jwtHelper';
 
 const controllerStatus = (req, res) => res.status(200).json({ status: 'online' });
 
 const getUser = async (req, res) => {
   try {
-    const token = req.headers.authorization;
-    const userFromToken = extractTokenFromHeader(token);
-    const user = await User.findOne({ email: userFromToken.email }).lean().exec();
+    const { userFromToken } = req;
+    const user = await User.findById(userFromToken._id).lean().exec();
     if (user) {
       return statusMessage({
         success: true,
@@ -31,21 +29,40 @@ const getUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  let update;
+  let user;
+
   try {
-    const bearerToken = req.headers.authorization;
-    const userFromToken = extractTokenFromHeader(bearerToken);
-    const update = req.body;
-    const user = await User.findByIdAndUpdate(
-      userFromToken._id,
-      update,
-      { new: true },
-    ).lean().exec();
-    const token = newToken({ ...user });
+    const { userFromToken } = req;
+    update = req.body;
+    const result = await User.find({ _id: userFromToken._id });
+    [user] = result;
+  } catch (error) {
+    return errorMessage({
+      status: 500,
+      error: error.message,
+      message: 'Server error',
+    }, req, res);
+  }
+
+  try {
+    Object.keys(update).forEach((key) => {
+      user[key] = update[key];
+    });
+    await user.save((err, updatedUser) => {
+      if (err) {
+        return err;
+      }
+      return updatedUser;
+    });
+
+    const userData = user.lean().exec();
+
     return statusMessage({
       success: true,
       status: 200,
       message: 'User updated.',
-      user: { ...user, token },
+      user: { ...userData },
     }, req, res);
   } catch (error) {
     return errorMessage({
@@ -57,10 +74,14 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const bearerToken = req.headers.authorization;
-    const userFromToken = extractTokenFromHeader(bearerToken);
-
-    const user = await User.findByIdAndDelete(userFromToken._id).lean().exec();
+    const user = req.userFromToken;
+    await User.findById(user._id, (error, userDoc) => {
+      if (error) {
+        console.debug(error.message);
+      } else {
+        userDoc.remove();
+      }
+    });
 
     return statusMessage({
       success: true,
