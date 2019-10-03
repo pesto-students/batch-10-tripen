@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -23,6 +24,7 @@ export default (state, action) => {
       localStorage.setItem('name', action.payload.name);
       localStorage.setItem('isAuthenticated', true);
       localStorage.setItem('username', action.payload.username);
+      localStorage.setItem('userId', action.payload._id);
       return {
         ...state,
         ...action.payload,
@@ -33,11 +35,7 @@ export default (state, action) => {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
-      localStorage.removeItem('token');
-      localStorage.removeItem('email');
-      localStorage.removeItem('name');
-      localStorage.removeItem('isAuthenticated');
-      localStorage.removeItem('username');
+      localStorage.clear();
       return {
         ...state,
         token: null,

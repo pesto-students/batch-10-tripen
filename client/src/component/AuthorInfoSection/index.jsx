@@ -1,14 +1,48 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/destructuring-assignment */
+import React, { useState, useEffect, useContext } from 'react';
 import {
-  Image, Button, Row, Col,
+  Button, Row, Col, Spinner,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './AuthorInfoSection.css';
 import InputBox from '../InputBox';
+import DefaultProfileImg from '../DefaultProfileImg';
+import updateProfileData from '../../containers/Profile/updateProfileData';
+import AuthContext from '../../context/auth/authContext';
 
 const AuthorInfoSection = (props) => {
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
+  const { isAuthenticated, token } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const handleOnSave = () => {
+    if ((props.username !== username || props.fullName !== fullName) && isAuthenticated && token) {
+      updateProfileData(
+        {
+          username,
+          name: fullName,
+          token,
+        },
+        {
+          onStart: () => {
+            setIsLoading(true);
+          },
+          onSuccess: () => {
+            /* Change the value of Auth state */
+          },
+          onFailure: (e) => {
+            console.warn("Couldn't update the profile data.", e);
+          },
+          onCompletion: () => {
+            setIsLoading(false);
+          },
+        },
+      );
+    } else {
+      setUsername(props.username);
+      setFullName(props.fullName);
+    }
+  };
   useEffect(() => {
     setUsername(props.username);
     setFullName(props.fullName);
@@ -21,15 +55,11 @@ const AuthorInfoSection = (props) => {
   };
   return (
     <Row className="justify-content-center author-info-section">
-      {props.isLoggedIn ? (
+      {props.isLoggedInUserProfile ? (
         <Col lg="4" md="8" xs="8" sm="8" className="text-center">
-          <Image
-            src={props.profilePic}
-            width={100}
-            height={100}
-            alt="Author"
-            className="author-image border border-primary text-center"
-            roundedCircle
+          <DefaultProfileImg
+            imgText={props.fullName}
+            className="author-image border border-primary"
           />
           <InputBox
             value={username}
@@ -47,12 +77,15 @@ const AuthorInfoSection = (props) => {
           />
           {props.username !== username || props.fullName !== fullName ? (
             <div className="button-group">
-              <Button variant="primary">Save</Button>
+              <Button variant="primary" onClick={handleOnSave} disabled={isLoading}>
+                {isLoading ? <Spinner animation="grow" variant="light" /> : 'Save'}
+              </Button>
               <Button
                 variant="outline-primary"
+                disabled={isLoading}
                 onClick={() => {
-                  setUsername(props.username || '');
-                  setFullName(props.fullName || '');
+                  setUsername(props.username);
+                  setFullName(props.fullName);
                 }}
               >
                 Cancel
@@ -64,13 +97,9 @@ const AuthorInfoSection = (props) => {
         </Col>
       ) : (
         <Col lg="4" md="8" xs="8" sm="8" className="text-center">
-          <Image
-            src={props.profilePic}
-            width={100}
-            height={100}
-            alt="Author"
-            className="author-image"
-            roundedCircle
+          <DefaultProfileImg
+            imgText={props.fullName}
+            className="author-image border border-primary"
           />
           <p>{props.username}</p>
           <p>{props.fullName}</p>
@@ -80,7 +109,7 @@ const AuthorInfoSection = (props) => {
   );
 };
 AuthorInfoSection.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedInUserProfile: PropTypes.bool.isRequired,
   username: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
   profilePic: PropTypes.string,

@@ -10,7 +10,7 @@ import LoginModal from '../LoginModal/LoginModal';
 
 const Header = () => {
   const authContext = useContext(AuthContext);
-  const { isAuthenticated, name } = authContext;
+  const { isAuthenticated, name, userId } = authContext;
   return (
     <Navbar bg="light" expand="lg">
       <LinkContainer to="/">
@@ -23,10 +23,9 @@ const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-
           {isAuthenticated ? (
             <>
-              <LinkContainer to="/profile/sss">
+              <LinkContainer to={`/profile/${userId}`}>
                 <Nav.Link>
                 Welcome,
                   {' '}

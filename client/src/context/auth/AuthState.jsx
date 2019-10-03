@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
+import serverUrl from '../../serverUrl';
 
 import setAuthToken from '../../utils/setAuthToken';
 
@@ -25,6 +26,7 @@ const AuthState = ({ children }) => {
     name: localStorage.getItem('name'),
     username: localStorage.getItem('username'),
     email: localStorage.getItem('email'),
+    userId: localStorage.getItem('userId'),
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -44,7 +46,7 @@ const AuthState = ({ children }) => {
       headers: { 'Content-Type': 'application/json' },
     };
     try {
-      const res = await axios.post('http://localhost:3030/api/v1/auth/signup', formData, config);
+      const res = await axios.post(`${serverUrl}/api/v1/auth/signup`, formData, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data.user,
@@ -63,7 +65,7 @@ const AuthState = ({ children }) => {
       headers: { 'Content-Type': 'application/json' },
     };
     try {
-      const res = await axios.post('http://localhost:3030/api/v1/auth/signin', formData, config);
+      const res = await axios.post(`${serverUrl}/api/v1/auth/signin`, formData, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data.user,
@@ -97,6 +99,7 @@ const AuthState = ({ children }) => {
         name: state.name,
         email: state.email,
         username: state.username,
+        userId: state.userId,
         token: state.token,
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,

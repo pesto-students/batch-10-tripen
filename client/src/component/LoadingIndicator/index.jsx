@@ -1,12 +1,17 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
+
 const LoadingIndicator = ({ type, variant, text }) => (
-  <p className="text-center">
-    <Spinner animation={type} variant={variant} as="span" />
-    {text}
-  </p>
+  <Row>
+    <Col className="m-5">
+      <p className="text-center text-muted font-italic ">
+        <Spinner className="align-middle m-2" animation={type} variant={variant} as="span" />
+        {text}
+      </p>
+    </Col>
+  </Row>
 );
 
 LoadingIndicator.defaultProps = { type: 'grow', variant: 'primary', text: 'Loading...' };
