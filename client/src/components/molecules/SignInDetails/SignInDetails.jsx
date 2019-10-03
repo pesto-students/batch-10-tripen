@@ -29,8 +29,6 @@ export default function SignUpDetails() {
             onChange={onChange}
             name="email"
             required
-            minLength="8"
-            maxLength="127"
           />
         </Form.Group>
         <Form.Group>
@@ -42,9 +40,7 @@ export default function SignUpDetails() {
             onChange={onChange}
             name="password"
             required
-            pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}"
             title="Must contain at least a digit and an alphabet, and should be of 8 or more charachters"
-            minLength="8"
             maxLength="127"
           />
         </Form.Group>
