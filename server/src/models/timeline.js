@@ -14,6 +14,7 @@ const timelineSchema = new mongoose.Schema(
     },
     coverImg: {
       type: String,
+      default: 'https://react.semantic-ui.com/images/wireframe/image.png',
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
