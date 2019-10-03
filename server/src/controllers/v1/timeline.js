@@ -29,7 +29,10 @@ export const deleteTimeline = async (req, res) => {
 export const getTimelineByUserId = async (req, res) => {
   const { id } = req.params;
   const { isFetchAll } = req.query;
-  console.log('userid', id, isFetchAll);
-  const { status, error, data } = await timelineDao.getTimelineByUser(id, isFetchAll);
-  res.status(status).json({ error, data });
-}
+  const {
+    status, success, message, error, data,
+  } = await timelineDao.getTimelineByUser(id, isFetchAll);
+  res.status(status).json({
+    success, error, message, data,
+  });
+};
