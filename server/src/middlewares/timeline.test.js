@@ -1,4 +1,4 @@
-import { verifyTimelineId, verifyTimelineObject, sortPostsByDisplayTime } from './timeline';
+import { verifyMongooseId as verifyTimelineId, verifyTimelineObject, sortPostsByDisplayTime } from './timeline';
 
 describe('middleware: timeline', () => {
   describe('verifyTimelineId: req handler create', () => {
@@ -14,31 +14,30 @@ describe('middleware: timeline', () => {
     });
   });
   describe('verifyTimelineId: req handler calling', () => {
-    let mockReq, mockRes;
+    let mockReq; let
+      mockRes;
     beforeEach(() => {
-      mockReq = (value) => {
-        return {
-          params: {
-            id: value
-          }
-        };
-      },
+      mockReq = (value) => ({
+        params: {
+          id: value,
+        },
+      }),
       mockRes = () => {
         const res = {};
         res.status = jest.fn().mockReturnValue(res);
         res.json = jest.fn().mockReturnValue(res);
         return res;
       };
-    })
+    });
     it('should call next() once', async () => {
-      const req = mockReq('551137c2f9e1fac808a5f572'); /*TODO: add generic utils func mongoID */
+      const req = mockReq('551137c2f9e1fac808a5f572'); /* TODO: add generic utils func mongoID */
       const res = mockRes();
       const nextSpy = jest.fn();
       await verifyTimelineId(req, res, nextSpy);
       expect(nextSpy).toHaveBeenCalledTimes(1);
     });
-    describe('should not call next()',() => {
-      it('response status 400',async () => {
+    describe('should not call next()', () => {
+      it('response status 400', async () => {
         const req = mockReq('invalid_id');
         const res = mockRes();
         const nextSpy = jest.fn();
@@ -46,7 +45,7 @@ describe('middleware: timeline', () => {
         expect(nextSpy).toHaveBeenCalledTimes(0);
         expect(res.status).toHaveBeenCalledWith(400);
         expect(res.json).toHaveBeenCalledWith({
-          msg: `Given param Id ${req.params.id} is invalid`
+          msg: `Given param Id ${req.params.id} is invalid`,
         });
       });
     });
@@ -82,9 +81,7 @@ describe('middleware: timeline', () => {
     let mockTimeline;
     const timeNow = new Date();
     beforeAll(() => {
-      mockReq = (body) => {
-        return { body: body };
-      };
+      mockReq = (body) => ({ body });
       mockRes = () => {
         const res = {};
         res.status = jest.fn().mockReturnValue(res);
@@ -93,33 +90,33 @@ describe('middleware: timeline', () => {
       };
       res = mockRes();
       mockTimeline = {
-        "tagline": "some tagline",
-        "coverImg": "https://source.unsplash.com/random",
-        "userId": "551137c2f9e1fac808a5f572",
-        "posts": [
+        tagline: 'some tagline',
+        coverImg: 'https://source.unsplash.com/random',
+        userId: '551137c2f9e1fac808a5f572',
+        posts: [
           {
-            "title": "some card title",
-            "coverImg": "https://source.unsplash.com/random",
-            "content": "some content abt the card",
-            "location": {
-              "type": "Point",
-              "coordinates":[1, 2]
+            title: 'some card title',
+            coverImg: 'https://source.unsplash.com/random',
+            content: 'some content abt the card',
+            location: {
+              type: 'Point',
+              coordinates: [1, 2],
             },
-            "displayTime": "2019-10-01T12:50:11Z"
+            displayTime: '2019-10-01T12:50:11Z',
           },
           {
-            "title": "some card title 2",
-            "coverImg": "https://source.unsplash.com/random",
-            "content": "some content abt the card",
-            "location": {
-              "type": "Point",
-              "coordinates":[1, 2]
+            title: 'some card title 2',
+            coverImg: 'https://source.unsplash.com/random',
+            content: 'some content abt the card',
+            location: {
+              type: 'Point',
+              coordinates: [1, 2],
             },
-            "displayTime": "2019-10-01T12:50:01Z"
-          }
+            displayTime: '2019-10-01T12:50:01Z',
+          },
         ],
-        "title": "some title"
-      }
+        title: 'some title',
+      };
       Object.freeze(mockTimeline);
     });
     it('should sort timeline.posts by post.displayTime', async () => {

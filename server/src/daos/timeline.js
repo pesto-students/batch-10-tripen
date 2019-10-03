@@ -1,7 +1,5 @@
 import Timeline from '../models/timeline';
 import { homePageTimelineFields } from '../utils/constants';
-import errorHandler from '../utils/errorMessage';
-import returnMessage from '../utils/statusMessage';
 
 export const getTimelineById = async (id) => {
   const response = {
@@ -96,14 +94,16 @@ export const updateTimeline = async (_id, updatedTimeline) => {
 export const getTimelineByUser = async (userId, isFetchAll) => {
   const response = {
     data: [],
-    error: null,
+    success: true,
+    message: `${isFetchAll ? 'All' : 'Public'} timelines fetched`,
     status: 200,
   };
   try {
-    const filter = isFetchAll ? { userId: userId } : { userId: userId, isPrivate: false };
+    const filter = isFetchAll ? { userId } : { userId, isPrivate: false };
     response.data = await Timeline.find(filter, homePageTimelineFields);
   } catch (err) {
-    response.error = err.message;
+    response.success = false;
+    response.message = 'Failed - Could not fetch timelines';
     response.status = 400;
   }
   return response;
