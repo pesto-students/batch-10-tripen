@@ -1,7 +1,12 @@
 import axios from 'axios';
+<<<<<<< HEAD
 import serverUrl from '../../serverUrl';
 
 const fetchTimelines = async (setTimelineData, setIsFetching) => {
+=======
+
+export default function fetchTimelines(setTimelineData, setIsFetching) {
+>>>>>>> 4ab8fbd... fetch timelines
   setIsFetching(true);
   const config = {
     headers: { 'Content-Type': 'application/json' },
