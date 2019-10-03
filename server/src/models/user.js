@@ -28,14 +28,11 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
     location: {
-      type: {
+      name: {
         type: String,
-        enum: ['Point'],
-        required: true,
       },
       coordinates: {
         type: [Number],
-        required: true,
       },
     },
   },

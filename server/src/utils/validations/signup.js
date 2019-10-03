@@ -1,7 +1,6 @@
 import checkEmpty from './common/checkEmpty';
 import { checkIfNotEmail } from './common/isEmail';
 import { checkIfNotString } from './common/checkString';
-import { checkIfNotGeoJson } from './common/checkIfNotGeoJson';
 import mapErrorsToProperties from './mapErrorsToProperties';
 
 const validateInputs = (user) => {
@@ -10,7 +9,6 @@ const validateInputs = (user) => {
     ['email', [checkEmpty, checkIfNotString, checkIfNotEmail]],
     ['username', [checkEmpty, checkIfNotString]],
     ['password', [checkEmpty, checkIfNotString]],
-    ['location', [checkEmpty, checkIfNotGeoJson]],
   ];
 
   const isValidOrThrowErrors = mapErrorsToProperties(propertiesToCheck, user);
