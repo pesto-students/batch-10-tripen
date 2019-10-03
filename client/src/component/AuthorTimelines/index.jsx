@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -6,7 +7,7 @@ import './AuthorTimelines.css';
 
 const AuthorTimelines = (props) => (
   <>
-    {props.isLoggedIn ? (
+    {props.isLoggedInUserProfile ? (
       <Tabs defaultActiveKey="public" id="public-private-tabs">
         <Tab eventKey="public" title="Public">
           <div className="timeline-list-container">
@@ -21,13 +22,15 @@ const AuthorTimelines = (props) => (
       </Tabs>
     ) : (
       <div className="timeline-list-container">
+        <h2 className="text-center">Timelines</h2>
+        <hr />
         <TimelineList timelines={props.publicTimelines} />
       </div>
     )}
   </>
 );
 AuthorTimelines.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedInUserProfile: PropTypes.bool.isRequired,
   publicTimelines: PropTypes.array.isRequired,
   privateTimelines: PropTypes.array,
 };
