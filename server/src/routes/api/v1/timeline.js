@@ -33,7 +33,6 @@ router
   .get(verifyMongooseId, getTimelineById)
   .delete(
     verifyMongooseId,
-    verifyUserPermission,
     deleteTimeline)
   .put(
     verifyMongooseId,
