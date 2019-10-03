@@ -31,7 +31,10 @@ router
 router
   .route('/:id')
   .get(verifyMongooseId, getTimelineById)
-  .delete(verifyMongooseId, deleteTimeline)
+  .delete(
+    verifyMongooseId,
+    verifyUserPermission,
+    deleteTimeline)
   .put(
     verifyMongooseId,
     verifyTimelineObject,
