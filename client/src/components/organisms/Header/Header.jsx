@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRoute, faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 import AuthContext from '../../../context/auth/authContext';
 import LogoutButton from '../../atoms/LogoutButton/LogoutButton';
-
+import { withRouter } from 'react-router-dom';
 import LoginModal from '../LoginModal/LoginModal';
 
-const Header = () => {
+const Header = (props) => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, name, userId } = authContext;
   return (
@@ -41,7 +41,7 @@ const Header = () => {
                 Create Timeline
                 </Nav.Link>
               </LinkContainer>
-              <LogoutButton />
+              <LogoutButton {...props}/>
             </>
           ) : <LoginModal />}
         </Nav>
@@ -49,4 +49,4 @@ const Header = () => {
     </Navbar>
   );
 };
-export default Header;
+export default withRouter(Header);
