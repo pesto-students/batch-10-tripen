@@ -14,7 +14,7 @@ const timelineSchema = new mongoose.Schema(
     },
     coverImg: {
       type: String,
-      default: 'https://source.unsplash.com/random/1080x720',
+      default: 'https://source.unsplash.com/WLUHO9A_xik/1080x750',
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,

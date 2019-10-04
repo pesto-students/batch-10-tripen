@@ -1,8 +1,8 @@
 import * as timelineDao from '../../daos/timeline';
 
 export const getAllTimeline = async (req, res) => {
-  const { page, limit = 10 } = parseInt(req.query, 2);
-  const { status, error, data } = await timelineDao.getAllPublicTimeline(page - 1, limit);
+  const { page } = req.query;
+  const { status, error, data } = await timelineDao.getAllPublicTimeline(parseInt(page - 1), 10);
   res.status(status).json({ error, data });
 };
 export const getTimelineById = async (req, res) => {
