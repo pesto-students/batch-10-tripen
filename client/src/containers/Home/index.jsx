@@ -15,5 +15,5 @@ export default function Home() {
     }
   }, [timelines]);
 
-  return <HomeView timelines={timelines} isFetching={isFetching} currentPage={page} changePage={setPage}/>;
+  return <HomeView timelines={timelines} isFetching={isFetching} currentPage={page} changePage={setPage} />;
 }

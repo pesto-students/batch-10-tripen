@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import LoadingIndicator from '../component/LoadingIndicator';
 import TimelineList from '../component/TimelineList';
 
-export default function HomeView({ isFetching, timelines, changePage, currentPage }) {
+export default function HomeView({
+  isFetching, timelines, changePage, currentPage,
+}) {
   return (
     <>
       <Container>
@@ -13,21 +15,22 @@ export default function HomeView({ isFetching, timelines, changePage, currentPag
         {isFetching
           ? <LoadingIndicator text="Fetching Timelines ..." />
           : <TimelineList timelines={timelines} />}
+        <Pagination className="justify-content-md-center">
+          <Pagination.Item key={1} onClick={() => changePage(1)} active={currentPage === 1}>
+            {1}
+          </Pagination.Item>
+          <Pagination.Item key={2} onClick={() => changePage(2)} active={currentPage === 2}>
+            {2}
+          </Pagination.Item>
+          <Pagination.Item key={3} onClick={() => changePage(3)} active={currentPage === 3}>
+            {3}
+          </Pagination.Item>
+          <Pagination.Item key={4} onClick={() => changePage(4)} active={currentPage === 4}>
+            {4}
+          </Pagination.Item>
+        </Pagination>
       </Container>
-      <Pagination>
-        <Pagination.Item key={1} onClick={()=>changePage(1)} active={1 === currentPage}>
-          {1}
-        </Pagination.Item>
-        <Pagination.Item key={2} onClick={()=>changePage(2)} active={2 === currentPage}>
-          {2}
-        </Pagination.Item>
-        <Pagination.Item key={3} onClick={()=>changePage(3)} active={3 === currentPage}>
-          {3}
-        </Pagination.Item>
-        <Pagination.Item key={4} onClick={()=>changePage(4)} active={4 === currentPage}>
-          {4}
-        </Pagination.Item>
-      </Pagination>
+
     </>
   );
 }
