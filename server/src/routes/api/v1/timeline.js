@@ -33,7 +33,8 @@ router
   .get(verifyMongooseId, getTimelineById)
   .delete(
     verifyMongooseId,
-    deleteTimeline)
+    deleteTimeline,
+  )
   .put(
     verifyMongooseId,
     verifyTimelineObject,
@@ -51,5 +52,15 @@ router
     verifyIfUserSignedIn,
     getTokenFromSignedInUser,
     getTimelineByUserId);
+
+// router
+//   .route('/:id/post/')
+//   .get(getAllTimelinePosts);
+
+// router
+//   .route('/post/:postId')
+//   .get(getPost)
+//   .put(updatePost)
+//   .delete(deletePost);
 
 export default router;
