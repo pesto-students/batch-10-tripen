@@ -9,7 +9,8 @@ export const getTimelineById = async (id) => {
     status: 200,
   };
   try {
-    response.data.timeline = await Timeline.findById(id);
+    response.data.timeline = await Timeline.findById(id).populate('posts');
+    console.log(response.data.timeline);
     const { userId } = response.data.timeline;
     response.data.user = {};
     response.data.user = await User.findOne(userId, 'name');

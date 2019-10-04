@@ -16,6 +16,10 @@ export const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    timelineId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'timeline',
+    },
     location: {
       name: {
         type: String,
