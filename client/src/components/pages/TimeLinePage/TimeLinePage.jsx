@@ -23,6 +23,7 @@ const TimeLinePage = (props) => {
   const getTimelineData = async () => {
     const res = await axios.get(`${serverUrl}/api/v1/timeline/${timeline_id}`);
     setTimelineData(res.data.data);
+    console.log(res.data.data);
   };
 
   useEffect(() => {
@@ -35,14 +36,14 @@ const TimeLinePage = (props) => {
 
       {timelineData ? (
         <>
-        <Helmet>
-        <title>{timelineData.title}</title>
-        <link rel="canonical" href="https://tripen-dev.netlify.com" />
-        <meta property="og:title" content={timelineData.title} />
-        <meta property="og:description" content={timelineData.tagline} />
-        <meta property="og:image" itemProp="image" content="https://source.unsplash.com/random" />
-        <meta property="og:url" content={window.location.href} />
-      </Helmet>
+          <Helmet>
+            <title>{timelineData.title}</title>
+            <link rel="canonical" href="https://tripen-dev.netlify.com" />
+            <meta property="og:title" content={timelineData.title} />
+            <meta property="og:description" content={timelineData.tagline} />
+            <meta property="og:image" itemProp="image" content="https://source.unsplash.com/random" />
+            <meta property="og:url" content={window.location.href} />
+          </Helmet>
           <CoverImage bg={timelineData.timeline.coverImg} title={timelineData.timeline.title} tagline={timelineData.timeline.tagline} author={timelineData.user.name} editMode={editMode} />
           <TimeLine posts={timelineData.timeline.posts} editMode={editMode} />
           <Container>
