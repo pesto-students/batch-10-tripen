@@ -4,5 +4,5 @@ const modelNames = {
   timeline: 'timeline',
   user: 'user',
 };
-export const homePageTimelineFields = 'tagline updatedAt coverImg title';
+export const homePageTimelineFields = 'tagline updatedAt coverImg title isPrivate';
 export default Object.freeze(modelNames);
