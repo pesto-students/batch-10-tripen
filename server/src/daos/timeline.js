@@ -10,7 +10,7 @@ export const getTimelineById = async (id) => {
   };
   try {
     response.data.timeline = await Timeline.findById(id);
-    const { userId }= response.data.timeline;
+    const { userId } = response.data.timeline;
     response.data.user = {};
     response.data.user = await User.findOne(userId, 'name');
     if (response.data === null) {
@@ -42,19 +42,22 @@ export const deleteTimelineById = async (_id) => {
   }
   return response;
 };
-export const getAllPublicTimeline = async (pageNumber, limit) => {
+export const getAllPublicTimeline = async (page, limit) => {
   const response = {
     data: [],
     error: null,
     status: 200,
   };
   try {
-    response.data = await Timeline.find({
-      isPrivate: false,
-    }, homePageTimelineFields, {
-      skip: (pageNumber * limit),
-      limit,
-    });
+    response.data = await Timeline.find({ isPrivate: false }, homePageTimelineFields);
+    //   {
+    //   isPrivate: false,
+    // }, homePageTimelineFields,
+    // //  {
+    // //   skip: (pageNumber * limit),
+    // //   limit,
+    // // }
+    // );
   } catch (err) {
     response.error = err.message;
     response.status = 500;
