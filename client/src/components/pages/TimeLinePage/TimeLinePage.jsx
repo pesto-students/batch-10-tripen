@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Button, Container } from 'react-bootstrap';
+import { Helmet } from 'react-helmet';
 import DeleteButton from './DeleteButton';
 import EditButton from './EditButton';
 import serverUrl from '../../../serverUrl';
@@ -29,6 +30,14 @@ const TimeLinePage = (props) => {
   }, [timeline_id]);
   return (
     <>
+      <Helmet>
+        <title>{timelineData.title}</title>
+        <link rel="canonical" href="https://tripen-dev.netlify.com" />
+        <meta property="og:title" content={timelineData.title} />
+        <meta property="og:description" content={timelineData.tagline} />
+        <meta property="og:image" itemProp="image" content="https://source.unsplash.com/random" />
+        <meta property="og:url" content={window.location.href} />
+      </Helmet>
       <CoverImage bg={timelineData.coverImg} title={timelineData.title} tagline={timelineData.tagline} />
       <TimeLine posts={timelineData.posts} />
       <Container>

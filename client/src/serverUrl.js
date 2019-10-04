@@ -1,2 +1,2 @@
-const serverUrl = 'http://localhost:3030';
+const serverUrl = 'https://tripen-server.herokuapp.com';
 export default serverUrl;
