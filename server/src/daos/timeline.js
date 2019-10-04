@@ -13,7 +13,7 @@ export const getTimelineById = async (id) => {
     console.log(response.data.timeline);
     const { userId } = response.data.timeline;
     response.data.user = {};
-    response.data.user = await User.findOne(userId, 'name');
+    response.data.user = await User.findById(userId, 'name');
     if (response.data === null) {
       response.data = {};
       response.error = `No document for id:${id}`;
