@@ -49,15 +49,12 @@ export const getAllPublicTimeline = async (page, limit) => {
     status: 200,
   };
   try {
-    response.data = await Timeline.find({ isPrivate: false }, homePageTimelineFields);
-    //   {
-    //   isPrivate: false,
-    // }, homePageTimelineFields,
-    // //  {
-    // //   skip: (pageNumber * limit),
-    // //   limit,
-    // // }
-    // );
+    response.data = await Timeline.find({
+      isPrivate: false,
+    }, homePageTimelineFields, {
+      skip: (page * limit),
+      limit,
+    });
   } catch (err) {
     response.error = err.message;
     response.status = 500;
