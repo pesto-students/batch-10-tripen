@@ -7,7 +7,7 @@ import serverUrl from '../../../serverUrl';
 
 const EditTimeLine = (props) => {
   const timeline_id = props.match.params.id;
-  const [timelineData, setTimelineData] = useState({ coverImg: null, tagline: null, posts: null });
+  const [timelineData, setTimelineData] = useState({ coverImg: null, tagline: null, posts: null, isPrivate:false });
   const blankPost = { title: null, content: null, _id: uuid.v4() };
 
   const [postData, setPostData] = useState([blankPost]);
@@ -25,22 +25,23 @@ const EditTimeLine = (props) => {
   }, [timeline_id]);
 
   const {
-    title, tagline, coverImg,
+    title, tagline, coverImg,isPrivate
   } = timelineData || null;
 
-  const { posts } = postData;
 
   const onChange = (e) => {
     setTimelineData({ ...timelineData, [e.target.name]: e.target.value });
   };
-
+const togglePrivate=()=>{
+  setTimelineData({ ...timelineData, isPrivate:!isPrivate});
+  console.log(isPrivate);
+}
 
   const addPost = () => setPostData([...postData, blankPost]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    console.log(e.target.values);
+    console.log(isPrivate);
   };
 
 
@@ -88,7 +89,11 @@ const EditTimeLine = (props) => {
     Submit
                   </Button>
                 )
+
             }
+            <Button variant="primary" onClick={togglePrivate}>
+            Your timeline is currently {isPrivate?'Private':'Public'}
+            </Button>
 
           </Form>
         ) }
