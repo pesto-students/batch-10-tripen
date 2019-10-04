@@ -7,30 +7,32 @@ import { Link } from 'react-router-dom';
 const CoverImage = ({
   bg, title, tagline, author, editMode, authorId,
 }) => (
-  <div style={{ backgroundImage: `url(${bg})` }} className="cover-image">
-    <div className="layer">
-      <div className="flex-container">
-        {editMode ? (
-          <Form.Control size="lg" type="text" placeholder="Title..." value={title} />
-        ) : (
-          <h1>{title}</h1>
-        )}
-
-        <blockquote className="blockquote text-center">
+  <div style={{ backgroundImage: `url(${bg})` }} className="cover-image ">
+    <div className="layer ">
+      <div className="flex-container ">
+        <div className="border border-primary bg-white p-4" style={{ borderRadius: '4px', opactiy: '0.5' }}>
           {editMode ? (
-            <Form.Control type="text" placeholder="Title..." value={tagline} />
+            <Form.Control size="lg" type="text" placeholder="Title..." value={title} />
           ) : (
-            <p className="mb-0">{tagline}</p>
+            <h1>{title}</h1>
           )}
 
-          <footer className="blockquote-footer">
+          <blockquote className="blockquote text-center ">
+            {editMode ? (
+              <Form.Control type="text" placeholder="Title..." value={tagline} />
+            ) : (
+              <p className="mb-0">{tagline}</p>
+            )}
+
+            <footer className="blockquote-footer">
             by
-            {' '}
-            <Link to={`/profile/${authorId}`}>
-              <cite title={title}>{author}</cite>
-            </Link>
-          </footer>
-        </blockquote>
+              {' '}
+              <Link to={`/profile/${authorId}`}>
+                <cite title={title}>{author}</cite>
+              </Link>
+            </footer>
+          </blockquote>
+        </div>
       </div>
     </div>
   </div>
