@@ -24,7 +24,7 @@ const timelineSchema = new mongoose.Schema(
       ref: 'post',
     }],
     userId: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
       required: [true, 'No userId provided'],
     },
