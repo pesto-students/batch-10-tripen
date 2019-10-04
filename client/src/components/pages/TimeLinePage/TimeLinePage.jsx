@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -9,11 +10,9 @@ import CoverImage from '../../organisms/CoverImage/CoverImage';
 import TimeLine from '../../organisms/TimeLine/TimeLine';
 import AuthContext from '../../../context/auth/authContext';
 
-
 const TimeLinePage = (props) => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated, userId } = authContext;
-
 
   const { timeline_id } = props.match.params;
 
@@ -29,21 +28,30 @@ const TimeLinePage = (props) => {
     getTimelineData(timeline_id);
   }, [timeline_id]);
 
-
   return (
     <>
-
       {timelineData ? (
         <>
-        <Helmet>
-        <title>{timelineData.title}</title>
-        <link rel="canonical" href="https://tripen-dev.netlify.com" />
-        <meta property="og:title" content={timelineData.title} />
-        <meta property="og:description" content={timelineData.tagline} />
-        <meta property="og:image" itemProp="image" content="https://source.unsplash.com/random" />
-        <meta property="og:url" content={window.location.href} />
-      </Helmet>
-          <CoverImage bg={timelineData.timeline.coverImg} title={timelineData.timeline.title} tagline={timelineData.timeline.tagline} author={timelineData.user.name} editMode={editMode} />
+          <Helmet>
+            <title>{timelineData.title}</title>
+            <link rel="canonical" href="https://tripen-dev.netlify.com" />
+            <meta property="og:title" content={timelineData.title} />
+            <meta property="og:description" content={timelineData.tagline} />
+            <meta
+              property="og:image"
+              itemProp="image"
+              content="https://source.unsplash.com/random"
+            />
+            <meta property="og:url" content={window.location.href} />
+          </Helmet>
+          <CoverImage
+            bg={timelineData.timeline.coverImg}
+            title={timelineData.timeline.title}
+            tagline={timelineData.timeline.tagline}
+            author={timelineData.user.name}
+            editMode={editMode}
+            authorId={timelineData.user._id}
+          />
           <TimeLine posts={timelineData.timeline.posts} editMode={editMode} />
           <Container>
             {isAuthenticated && userId === timelineData.user._id ? (
@@ -51,16 +59,17 @@ const TimeLinePage = (props) => {
                 <Button variant="secondary">Edit Timeline</Button>
               </LinkContainer>
             ) : null}
-            {isAuthenticated && userId === timelineData.user._id ? <DeleteButton timelineId={timeline_id} /> : null}
+            {isAuthenticated && userId === timelineData.user._id ? (
+              <DeleteButton timelineId={timeline_id} />
+            ) : null}
           </Container>
           {' '}
-
         </>
-      ) : <p>Loading</p>}
+      ) : (
+        <p>Loading</p>
+      )}
     </>
-
   );
 };
-
 
 export default TimeLinePage;
