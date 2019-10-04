@@ -1,8 +1,9 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 const Post = ({
-  post,
+  post, editMode,
 }) => {
   const date = (new Date(post.displayTime));
   const dateOptions = {
@@ -24,10 +25,17 @@ const Post = ({
         <span>{date.toLocaleTimeString('en-us', timeOptions)}</span>
       </time>
       <div className="cbp_tmlabel">
-        <h2>{post.title}</h2>
-        <p>
-          {post.content}
-        </p>
+        {editMode
+          ? <Form.Control size="lg" type="text" placeholder="Title..." value={post.title} />
+          : <h2>{post.title}</h2>}
+        {editMode
+          ? <Form.Control as="textarea" rows="3" placeholder="Content..." value={post.content} />
+          : (
+            <p>
+              {post.content}
+            </p>
+          )}
+
       </div>
     </li>
   );
@@ -35,6 +43,7 @@ const Post = ({
 
 Post.propTypes = {
   post: PropTypes.node.isRequired,
+  editMode: PropTypes.bool.isRequired,
 };
 
 export default Post;

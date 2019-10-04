@@ -37,7 +37,7 @@ const SignUpDetails = () => {
       <Form onSubmit={onSubmit}>
         <Form.Label hidden>Name:</Form.Label>
         <Form.Control placeholder="Name" name="name" value={name} onChange={onChange} required />
-        <Form.>
+        <Form.Group>
           <Form.Label hidden>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -52,7 +52,7 @@ const SignUpDetails = () => {
           <Form.Text className="text-muted">
             We&apos;ll never share your email with anyone else.
           </Form.Text>
-        </Form. Group>
+        </Form.Group>
         <Form.Label hidden>Username</Form.Label>
         <Form.Control
           type="text"

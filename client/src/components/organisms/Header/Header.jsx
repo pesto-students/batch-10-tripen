@@ -34,7 +34,7 @@ const Header = () => {
                   {name}
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/">
+              <LinkContainer to="/timeline/edit/new">
                 <Nav.Link>
                   <FontAwesomeIcon icon={faPlus} />
                   {' '}

@@ -1,23 +1,23 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col, CardColumns } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import TimelineCard from '../TimelineCard';
 
 const TimelineList = ({ timelines }) => (
-  <Row>
+  <CardColumns>
     {timelines && timelines.length > 0 ? (
       timelines.map((timeline) => (
-        <Col md={4} key={timeline._id}>
-          <TimelineCard timelineData={timeline} />
-        </Col>
+
+          <TimelineCard timelineData={timeline} key={timeline._id}/>
+
       ))
     ) : (
       <Col>
         <p className="text-muted text-center font-italic"> No Timelines Found</p>
       </Col>
     )}
-  </Row>
+  </CardColumns>
 );
 TimelineList.defaultProps = {
   timelines: [],
